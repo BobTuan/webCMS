@@ -5,7 +5,7 @@
     flex-direction: row;
 }
 #tree{
-    flex-grow  : 1;
+    flex-grow  : 3;
     border     : 1px solid rgb(240,240,240);
     background : rgb(247,247,247);
     margin-left: 60px;
@@ -13,7 +13,8 @@
     overflow-y: auto; */
 }
 #treeTitle{
-    width        : 250px;
+    /* width        : 250px; */
+    width        : 100%;
     margin-top   : 20px;
     margin-bottom: 20px;
     margin-left  : 10px;

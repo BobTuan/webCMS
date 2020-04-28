@@ -1,5 +1,5 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-
+<!-- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> -->
+<!doctype html>
 <head>
     <title>manage界面</title>
     <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8">
@@ -14,14 +14,17 @@
     <link rel="stylesheet" href="css/manage.css" type="text/css">
     <script src="js/tree.js"></script>
     <script src="js/sideNav.js"></script>
-    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
+    <!-- <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css"> -->
+    <link rel="stylesheet" href="css/bootstrap-3-3-4.css" type="text/css">
     <link href="dist/summernote.css" rel="stylesheet" />
-    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <!-- <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script> -->
+    <script src="js/jquery1-10-2.js"></script>
     <script type="text/javascript">
         var $jq = $; //jquery.min.js的$重命名为j$
         jQuery.noConflict();
     </script>
-    <script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+    <!-- <script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script> -->
+    <script src="js/bootstrap3-3-4.js"></script>
     <script src="dist/summernote.js"></script>
     <script src="dist/lang/summernote-zh-CN.js"></script>
 
@@ -47,7 +50,8 @@
 
     <div id="manageContainer">
         <div id="tree">
-            <div id="treeTitle"><h3>大学</h3>512条笔记
+            <div id="treeTitle">
+                <h3>大学</h3>512条笔记
             </div>
             <ul id="treeDemo" class="ztree"></ul>
             <ul class="list-group" id="rMenu">

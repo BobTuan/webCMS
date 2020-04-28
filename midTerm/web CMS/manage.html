@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<head>
+    <title>manage界面</title>
+    <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/rss.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/sideNav.css">
+    <link rel="stylesheet" href="css/metroStyle/metroStyle.css" type="text/css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.jqDock.min.js"></script>
+    <script type="text/javascript" src="js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="js/jquery.ztree.excheck.js"></script>
+    <script type="text/javascript" src="js/jquery.ztree.exedit.js"></script>
+    <link rel="stylesheet" href="css/manage.css" type="text/css">
+    <script src="js/tree.js"></script>
+    <script src="js/sideNav.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
+    <link href="dist/summernote.css" rel="stylesheet" />
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+        var $jq = $; //jquery.min.js的$重命名为j$
+        jQuery.noConflict();
+    </script>
+    <script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+    <script src="dist/summernote.js"></script>
+    <script src="dist/lang/summernote-zh-CN.js"></script>
+
+    <script type="text/javascript" src="js/tag.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/tag.css" />
+    <script>
+        $jq(function () {
+            $jq('.summernote').summernote({
+                height: 400,
+                tabsize: 2,
+                lang: 'zh-CN'
+            });
+        });
+    </script>
+    <style>
+        .list-group-item{
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="manageContainer">
+        <div id="tree">
+            <div id="treeTitle"><h3>大学</h3>512条笔记
+            </div>
+            <ul id="treeDemo" class="ztree"></ul>
+            <ul class="list-group" id="rMenu">
+                <li class="list-group-item " id="m_add" onclick="addTreeNode();">add</li>
+                <li class="list-group-item " id="m_del" onclick="removeTreeNode();">delete</li>
+            </ul>
+
+        </div>
+        <div id="dockContainer">
+            <ul id="jqDock">
+                <li><a class="dockItem" href="data.html"><img src="images/data/main.png" alt="Home"
+                    title="main&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" /></a></li>
+                <li><a class="dockItem" href="#"><img src="images/rss/notebook.png" alt="Contact"
+                            title="add&nbsp;&nbsp;&nbsp;&nbsp;" /></a></li>
+                <li><a class="dockItem" href="#"><img src="images/rss/tags.png" alt="portfolio"
+                            title="question&nbsp;&nbsp;&nbsp;&nbsp;" /></a></li>
+                <li><a class="dockItem" href="#"><img src="images/rss/more.png" alt="music"
+                            title="more&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" /></a></li>
+            </ul>
+        </div>
+        <div id="edit">
+            <!-- <div id="editHeader"> -->
+                <div id="editTitle">
+                    <input>&nbsp</input>
+                </div>
+                <div id="editTags">
+                        <span class="glyphicon glyphicon-tags" style="margin:0 5px"></span>
+                        <input type="text" id="tagValue" >
+                </div>
+                
+            <!-- </div> -->
+            <div class="summernote"></div>
+            <diV id="idea">
+                <div id="ideaLine">                
+                    <img id="user" src="images/user.png">
+                    <input id="note" type="text" placeholder="input your idea"></div> 
+            </diV>
+        </div>
+    </div>
+    <!-- <img id="icon" src="images/user.png"> -->
+
+    <!-- <script type="text/javascript" src="js/rss.js"></script> -->
+
+</body>
+
+</html>
+<script type="text/javascript">
+    //添加标签
+    //这里tagValue就是inputID对应标签id。
+    var tag = new Tag("tagValue");
+    tag.initView();
+    
+</script>

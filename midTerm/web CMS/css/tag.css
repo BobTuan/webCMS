@@ -1,0 +1,64 @@
+.tagsContaine .tagList,.tagsContaine .tagInput{
+	float: left;
+}
+
+.tagsContaine .tagList .tagItem{
+	height          : 20px;
+	line-height     : 20px;
+	background-color: #999999;
+	padding         : 1px, 3px;
+	text-align      : center;
+	float           : left;
+	margin          : 3px;
+	border-radius   : 5px;
+	color           : #FFFFFF;
+	font-size       : 13px;
+	letter-spacing  : 2px;
+	cursor          : pointer;
+}
+.tagsContaine .tagList .tagItem:hover{
+	background-color: #CCCCCC;
+}
+.tagsContaine .tagList .tagItem .delete{
+	float            : right;
+	width            : 13px;
+	height           : 13px;
+	background-image : url(../images/rss/x.png);
+	background-repeat: round;
+	margin-top       : -8px;
+	margin-right     : -8px;
+	display          : none;
+}
+.tagsContaine .tagList .tagItem:hover .delete{
+	display: block;
+}
+
+.tagsContaine .tagList .updateInput{
+	outline      : none;
+	height       : 20px;
+	line-height  : 20px;
+	width        : 100px;
+	font-size    : 13px;
+	border       : solid thin #AAAAAA;
+	border-radius: 5px;
+	margin       : 5px;
+	padding      : 0px 5px;
+	/* text-align   : center; */
+	float: left;
+		
+}
+.tagsContaine .tagInput{
+	outline      : none;
+	height       : 20px;
+	line-height  : 20px;
+	width        : 50px;
+	font-size    : 13px;
+	border       : solid thin #AAAAAA;
+	border-radius: 5px;
+	margin       : 3px;
+	padding      : 0px 5px;
+	/* text-align   : center; */
+}
+.tagsContaine .tagInput:focus{
+	border-color: #66CCFF;
+}

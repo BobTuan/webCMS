@@ -29,6 +29,7 @@
     <script src="dist/lang/summernote-zh-CN.js"></script>
 
     <script type="text/javascript" src="js/tag.js"></script>
+    <link rel="stylesheet" type="text/css" href="pageslide/jquery.pageslide.css" />
 	<link rel="stylesheet" type="text/css" href="css/tag.css" />
     <script>
         $jq(function () {
@@ -51,20 +52,19 @@
     <div id="manageContainer">
         <div id="tree">
             <div id="treeTitle">
-                <h3>大学</h3>512条笔记
+                <input type="text"  id="search" placeholder="搜索"/>
             </div>
-            <ul id="treeDemo" class="ztree"></ul>
+            <!-- <ul id="treeDemo" class="ztree"></ul>
             <ul class="list-group" id="rMenu">
                 <li class="list-group-item " id="m_add" onclick="addTreeNode();">add</li>
                 <li class="list-group-item " id="m_del" onclick="removeTreeNode();">delete</li>
-            </ul>
-
+            </ul> -->
         </div>
         <div id="dockContainer">
             <ul id="jqDock">
                 <li><a class="dockItem" href="data.html"><img src="images/data/main.png" alt="Home"
                     title="main&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" /></a></li>
-                <li><a class="dockItem" href="#"><img src="images/rss/notebook.png" alt="Contact"
+                <li><a class="dockItem" href="#modal" id="treeSlide"><img src="images/rss/notebook.png" alt="Contact"
                             title="add&nbsp;&nbsp;&nbsp;&nbsp;" /></a></li>
                 <li><a class="dockItem" href="#"><img src="images/rss/tags.png" alt="portfolio"
                             title="question&nbsp;&nbsp;&nbsp;&nbsp;" /></a></li>
@@ -91,13 +91,24 @@
             </diV>
         </div>
     </div>
-    <!-- <img id="icon" src="images/user.png"> -->
 
+    <div id="modal">
+        <h2>Modal</h2>
+        <p>This slide uses "modal" option set to "true". When using a modal pageslide, clicking on the main window will not close the window. You must explicitly call <code>$.pageslide.close()</code>.</p>
+    </div>
+    <!-- <img id="icon" src="images/user.png"> -->
     <!-- <script type="text/javascript" src="js/rss.js"></script> -->
 
 </body>
 
 </html>
+<script src="pageslide/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+    var $jjq = $; //jquery.min.js的$重命名为j$
+    jQuery.noConflict();
+</script>
+<script src="pageslide/jquery.pageslide.js"></script>
+<script src="pageslide/pageslide.js"></script>
 <script type="text/javascript">
     //添加标签
     //这里tagValue就是inputID对应标签id。

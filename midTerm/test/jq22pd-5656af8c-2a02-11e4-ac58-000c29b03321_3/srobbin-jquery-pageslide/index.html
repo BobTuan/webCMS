@@ -1,0 +1,96 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+  	<title>jQuery PageSlide Demo</title>
+
+  	<!--  The jquery.pageslide.css stylesheet has the class that you'll need on your page -->
+
+  	<link rel="stylesheet" type="text/css" href="jquery.pageslide.css" />
+
+  	<style>
+
+  	
+
+  	    body { 
+
+        	background: #f4f4f4;
+
+        	font: 14px/18px "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+        	color: #666; 
+
+        	-webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
+
+        	-webkit-text-size-adjust: none;
+
+        }
+
+
+
+        a, a:visited { color: #C30; text-decoration: none; border-bottom: 1px dotted #C30; }
+
+        a:hover { color: #900; border-bottom-style: solid; }
+
+
+
+        p { margin-bottom: 20px; }
+
+
+
+        #content {
+
+            width: 940px;
+
+            padding: 10px;
+
+            margin: 0 auto;
+
+        }
+
+            #content h1 { color: #333; line-height: 1em; }
+
+            #content ul { padding-left: 0; list-style: none; }
+
+                #content ul li { margin-bottom: 20px; }
+
+
+
+        #modal { display: none; }
+
+            #modal a { background: #CCC; color: #333; font-weight: bold; padding: 5px 10px; border: none; }
+
+            #modal a:hover { background: #aaa; } 
+
+
+
+        pre { border: 1px solid #CCC; background-color: #EEE; color: #333; padding: 10px 20px; }
+
+        
+
+    </style>
+
+</head>
+
+<body>
+
+    <div id="content">
+
+                <a href="#modal" class="second">Slide to the left, and display hidden content from this page in a modal pane.</a>
+
+        <div id="modal">
+            <h2>Modal</h2>
+            <p>This slide uses "modal" option set to "true". When using a modal pageslide, clicking on the main window will not close the window. You must explicitly call <code>$.pageslide.close()</code>.</p>
+        </div>
+    </div>
+    <script src="lib/jquery-1.7.1.min.js"></script>
+    <script src="jquery.pageslide.min.js"></script>
+    <script>
+
+    </script>
+</body>
+
+</html>
+

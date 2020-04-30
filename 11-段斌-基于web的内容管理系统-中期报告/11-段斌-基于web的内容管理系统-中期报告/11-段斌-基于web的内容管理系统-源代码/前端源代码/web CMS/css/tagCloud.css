@@ -1,0 +1,36 @@
+* {
+	margin: 0px;
+	margin: 0px;
+}
+
+#div1 {
+	position          : relative;
+	width             : 280px;
+	height            : 500px;
+	margin-left       : 20px;
+	overflow          : hidden;
+	box-shadow        : 0 0 10px #8e8e8e;
+	-webkit-box-shadow: 0 0 10px #8e8e8e;
+	-moz-box-shadow   : 0 0 10px #8e8e8e;
+}
+#div1 a {
+	position          : absolute;
+	color             : #8e8e8e;
+	text-decoration   : none;
+	top               : 260px;
+	display           : block;
+	border            : #8e8e8e 1px solid;
+	box-shadow        : 0 0 5px #8e8e8e;
+	-webkit-box-shadow: 0 0 5px #8e8e8e;
+	-moz-box-shadow   : 0 0 5px #8e8e8e;
+	background        : #fff;
+	opacity           : 0.3;
+	font-size         : 14px;
+	padding           : 3px 5px;
+	font-family       : arial;
+}
+#div1 a:hover {
+ opacity    : 1;
+ font-weight: bold;
+ font-size  : 16px;
+}

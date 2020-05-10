@@ -31,28 +31,6 @@
             font-size: 13px;
         }
     </style>
-    <script>
-        $jq(function () {
-            $jq('#keywordEdit').summernote({
-                height: 200,
-                tabsize: 2,
-                lang: 'zh-CN',
-                placeholder:'请输入键字'
-            });
-            $jq('#ideaEdit').summernote({
-                height: 190,
-                tabsize: 2,
-                lang: 'zh-CN',
-                placeholder:'请输入笔记的想法',
-            });
-            $jq('#noteEdit').summernote({
-                height: 200,
-                tabsize: 2,
-                lang: 'zh-CN',
-                placeholder:'请输入笔记正文',
-            });
-        });
-    </script>
 </head>
 
 <body>
@@ -101,8 +79,8 @@
                             <input name="tagsinput" id="tagsinputval" class="tagsinput" data-role="tagsinput" value="faltui,这是一个标签" placeholder="输入后回车"/>
                         </div>                    
                     </div>
-                        </div>                    
-                    </div>
+    
+                    <!-- </div> -->
                     <div class="summernote" id="noteEdit"></div>
                 </div>
             </div>
@@ -123,6 +101,35 @@
     var $jjq = $; //jquery.min.js的$重命名为j$
     jQuery.noConflict();
 </script>
-<!-- <script src="js/tree.js"></script> -->
+<script src="js/tree.js"></script>
 <script src="pageslide/jquery.pageslide.js"></script>
 <script src="pageslide/pageslide.js"></script>
+<script>
+    $jq(function () {
+        $jq('#keywordEdit').summernote({
+            height: 400,
+            tabsize: 2,
+            lang: 'zh-CN',
+            toolbar:[
+                ['style',['bold','clear']],
+                ['para',['ul','ol']],
+                ['color',['color']]
+            ]
+        });
+        $jq('#ideaEdit').summernote({
+            height: 100,
+            tabsize: 2,
+            lang: 'zh-CN',
+            toolbar:[
+                ['style',['bold','clear']],
+                ['para',['ul','ol']],
+                ['color',['color']]
+            ]
+        });
+        $jq('#noteEdit').summernote({
+            height: 300,
+            tabsize: 2,
+            lang: 'zh-CN'
+        });
+    });
+</script>

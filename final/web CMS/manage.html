@@ -23,11 +23,6 @@
     <script src="js/bootstrap3-3-4.js"></script>
     <script src="dist/summernote.js"></script>
     <script src="dist/lang/summernote-zh-CN.js"></script>
-    <script src="js/jqueryMin1-10-2.js"></script>
-    <script type="text/javascript">
-        var $jjjq = $; //jquery.min.js的$重命名为j$
-        jQuery.noConflict();
-    </script>
     <script type="text/javascript" src="js/tagsinput.js"></script>
     <link rel="stylesheet" type="text/css" href="pageslide/jquery.pageslide.css" />
     <link rel="stylesheet" type="text/css" href="css/tag.css" />
@@ -36,6 +31,28 @@
             font-size: 13px;
         }
     </style>
+    <script>
+        $jq(function () {
+            $jq('#keywordEdit').summernote({
+                height: 200,
+                tabsize: 2,
+                lang: 'zh-CN',
+                placeholder:'请输入键字'
+            });
+            $jq('#ideaEdit').summernote({
+                height: 190,
+                tabsize: 2,
+                lang: 'zh-CN',
+                placeholder:'请输入笔记的想法',
+            });
+            $jq('#noteEdit').summernote({
+                height: 200,
+                tabsize: 2,
+                lang: 'zh-CN',
+                placeholder:'请输入笔记正文',
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -79,13 +96,13 @@
                     <div id="editTitle">
                         <input>&nbsp</input>
                     </div>
-                    <!-- <div id="editTags">
-                        <input type="text" id="tagValue">
-                    </div> -->
-                    <div class="tagsinput-primary form-group">
-                        <input name="tagsinput" id="tagsinputval" class="tagsinput" data-role="tagsinput" value="faltui,这是一个标签" placeholder="输入后回车"/>
+                    <div id="editTags">
+                        <div class="tagsinput-primary form-group">
+                            <input name="tagsinput" id="tagsinputval" class="tagsinput" data-role="tagsinput" value="faltui,这是一个标签" placeholder="输入后回车"/>
+                        </div>                    
                     </div>
-                    <!-- </div> -->
+                        </div>                    
+                    </div>
                     <div class="summernote" id="noteEdit"></div>
                 </div>
             </div>
@@ -106,35 +123,6 @@
     var $jjq = $; //jquery.min.js的$重命名为j$
     jQuery.noConflict();
 </script>
-<script src="js/tree.js"></script>
+<!-- <script src="js/tree.js"></script> -->
 <script src="pageslide/jquery.pageslide.js"></script>
 <script src="pageslide/pageslide.js"></script>
-<script>
-    $jq(function () {
-        $jq('#keywordEdit').summernote({
-            height: 400,
-            tabsize: 2,
-            lang: 'zh-CN',
-            toolbar:[
-                ['style',['bold','clear']],
-                ['para',['ul','ol']],
-                ['color',['color']]
-            ]
-        });
-        $jq('#ideaEdit').summernote({
-            height: 100,
-            tabsize: 2,
-            lang: 'zh-CN',
-            toolbar:[
-                ['style',['bold','clear']],
-                ['para',['ul','ol']],
-                ['color',['color']]
-            ]
-        });
-        $jq('#noteEdit').summernote({
-            height: 300,
-            tabsize: 2,
-            lang: 'zh-CN'
-        });
-    });
-</script>

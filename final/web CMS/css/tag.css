@@ -60,10 +60,10 @@
     transition: opacity .25s linear;
   }
   .bootstrap-tagsinput .badge:hover {
-    /* background-color: #16a085; */
-    color        : white;
-    padding-right: 28px;
-    padding-left : 14px;
+    background-color: rgb(201,201,201);
+    color           : white;
+    padding-right   : 28px;
+    padding-left    : 14px;
   }
   .bootstrap-tagsinput .badge:hover > span {
     padding       : 0 10px 0 0;
@@ -91,15 +91,16 @@
 }
 
 	.tagsinput-primary {
-  margin-bottom: 18px;
+  margin-bottom: 2px;
+  width        : 100%;
 }
 
 .tagsinput-primary .bootstrap-tagsinput {
-  /* border-color : #1abc9c; */
+  border-color : rgb(201,201,201);
   margin-bottom: 0;
 }
 
 .tagsinput-primary .badge {
-  /* background-color: #1abc9c; */
-  color: white;
+  background-color: rgb(201,201,201);
+  color           : white;
 }

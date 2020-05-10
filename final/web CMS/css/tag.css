@@ -1,64 +1,105 @@
-.tagsContaine .tagList,.tagsContaine .tagInput{
-	float: left;
+*{margin: 0;padding: 0;list-style-type: none;text-decoration: none;}
+.box{width: 500px;margin: auto;}
+.bootstrap-tagsinput {
+  background-color: white;
+  border          : 2px solid #ebedef;
+  border-radius   : 6px;
+  margin-bottom   : 18px;
+  padding         : 6px 1px 1px 6px;
+  text-align      : left;
+  font-size       : 0;
 }
 
-.tagsContaine .tagList .tagItem{
-	height          : 20px;
-	line-height     : 20px;
-	background-color: #999999;
-	padding         : 1px, 3px;
-	text-align      : center;
-	float           : left;
-	margin          : 3px;
-	border-radius   : 5px;
-	color           : #FFFFFF;
-	font-size       : 13px;
-	letter-spacing  : 2px;
-	cursor          : pointer;
-}
-.tagsContaine .tagList .tagItem:hover{
-	background-color: #CCCCCC;
-}
-.tagsContaine .tagList .tagItem .delete{
-	float            : right;
-	width            : 13px;
-	height           : 13px;
-	background-image : url(../images/rss/x.png);
-	background-repeat: round;
-	margin-top       : -8px;
-	margin-right     : -8px;
-	display          : none;
-}
-.tagsContaine .tagList .tagItem:hover .delete{
-	display: block;
+.bootstrap-tagsinput .badge {
+  border-radius   : 4px;
+  background-color: #ebedef;
+  color           : #7b8996;
+  font-size       : 13px;
+  cursor          : pointer;
+  display         : inline-block;
+  position        : relative;
+  vertical-align  : middle;
+  overflow        : hidden;
+  margin          : 0 5px 5px 0;
+
+
+  padding   : 6px 28px 6px 14px;
+  transition: .25s linear;
 }
 
-.tagsContaine .tagList .updateInput{
-	outline      : none;
-	height       : 20px;
-	line-height  : 20px;
-	width        : 100px;
-	font-size    : 13px;
-	border       : solid thin #AAAAAA;
-	border-radius: 5px;
-	margin       : 5px;
-	padding      : 0px 5px;
-	/* text-align   : center; */
-	float: left;
-		
+.bootstrap-tagsinput .badge > span {
+  color          : white;
+  padding        : 0 10px 0 0;
+  cursor         : pointer;
+  font-size      : 12px;
+  position       : absolute;
+  right          : 0;
+  text-align     : right;
+  text-decoration: none;
+  top            : 0;
+  width          : 100%;
+  bottom         : 0;
+  z-index        : 2;
 }
-.tagsContaine .tagInput{
-	outline      : none;
-	height       : 20px;
-	line-height  : 20px;
-	width        : 50px;
-	font-size    : 13px;
-	border       : solid thin #AAAAAA;
-	border-radius: 5px;
-	margin       : 3px;
-	padding      : 0px 5px;
-	/* text-align   : center; */
+
+.bootstrap-tagsinput .badge > span:after {
+  content                : "x";
+  font-family            : "Flat-UI-Pro-Icons";
+  -webkit-font-smoothing : antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height            : 27px;
 }
-.tagsContaine .tagInput:focus{
-	border-color: #66CCFF;
+
+@media (hover: hover) {
+  .bootstrap-tagsinput .badge {
+    padding: 6px 21px;
+  }
+  .bootstrap-tagsinput .badge > span {
+    opacity   : 0;
+    filter    : "alpha(opacity=0)";
+    transition: opacity .25s linear;
+  }
+  .bootstrap-tagsinput .badge:hover {
+    /* background-color: #16a085; */
+    color        : white;
+    padding-right: 28px;
+    padding-left : 14px;
+  }
+  .bootstrap-tagsinput .badge:hover > span {
+    padding       : 0 10px 0 0;
+    opacity       : 1;
+    -webkit-filter: none;
+    filter        : none;
+  }
+}
+
+
+.bootstrap-tagsinput input[type="text"] {
+  font-size       : 14px;
+  border          : none;
+  box-shadow      : none;
+  outline         : none;
+  background-color: transparent;
+  padding         : 0;
+  margin          : 0;
+  width           : auto !important;
+  max-width       : inherit;
+  min-width       : 80px;
+  vertical-align  : top;
+  height          : 29px;
+  color           : #34495e;
+}
+
+	.tagsinput-primary {
+  margin-bottom: 18px;
+}
+
+.tagsinput-primary .bootstrap-tagsinput {
+  /* border-color : #1abc9c; */
+  margin-bottom: 0;
+}
+
+.tagsinput-primary .badge {
+  /* background-color: #1abc9c; */
+  color: white;
 }

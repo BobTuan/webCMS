@@ -109,27 +109,38 @@
         $jq('#keywordEdit').summernote({
             height: 400,
             tabsize: 2,
+            airMode: true,
             lang: 'zh-CN',
-            toolbar:[
-                ['style',['bold','clear']],
-                ['para',['ul','ol']],
-                ['color',['color']]
+            placeholder:"请输入关键字",
+            popover: {
+                air: [
+                ['color', ['color']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['para', ['ul','ol']],
             ]
+            },
+            fontSize:36,
         });
         $jq('#ideaEdit').summernote({
             height: 100,
             tabsize: 2,
             lang: 'zh-CN',
-            toolbar:[
-                ['style',['bold','clear']],
-                ['para',['ul','ol']],
-                ['color',['color']]
+            airMode: true,
+            placeholder:"请输入想法",
+            popover: {
+                air: [
+                ['color', ['color']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['para', ['ul','ol']],
             ]
+            },
+            blockquoteBreakingLevel: 2,
         });
         $jq('#noteEdit').summernote({
             height: 300,
             tabsize: 2,
-            lang: 'zh-CN'
+            lang: 'zh-CN',
+            placeholder:"请输入笔记",
         });
     });
 </script>

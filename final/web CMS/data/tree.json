@@ -1,0 +1,8 @@
+[
+    {"id":1, "pId":0, "name":"学习","open":true},
+    {"id":11, "pId":1, "name":"dsp"},
+    {"id":2, "pId":0, "name":"工作"},
+    {"id":21, "pId":2, "name":"code"},
+    {"id":3, "pId":0, "name":"生活"},
+    {"id":31, "pId":3, "name":"运动"}
+]

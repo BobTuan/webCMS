@@ -1,0 +1,127 @@
+#manageContainer {
+    height        : 100%;
+    width         : 100%;
+    display       : flex;
+    flex-direction: row;
+}
+#tree{
+    flex-grow       : 1;
+    border          : 1px solid rgb(240,240,240);
+    background-color: rgb(255,255,255);
+    margin-left     : 60px;
+    /* overflow-x      : hidden;
+    overflow-y: auto; */
+}
+#treeTitle{
+    /* width        : 250px; */
+    width        : 100%;
+    margin-top   : 20px;
+    margin-bottom: 20px;
+    text-align   : center;
+    /* margin-left  : 10px; */
+}
+#edit {
+    flex-grow: 10;
+    /* border        : 2px solid blue; */
+    display       : flex;
+    flex-direction: column;
+    overflow-y    : auto;
+    border        : solid 2px rgb(245,245,245);
+}
+#editTitle{
+    width : 98%;
+    height: 35px;
+    margin: 5px;
+}
+#editTitle input{
+    outline-style: none ;
+    border       : 1px solid #ccc;
+    border-radius: 3px;
+    width        : 100%;
+    height       : 100%;
+    font-size    : 24px;
+    font-family  : "Microsoft soft";
+}
+/* #editHeader{
+    width : 100%;
+    border: 1px solid #EFEFEF;
+} */
+
+#editTags{
+    height : 50px;
+    display: block;
+    /* display       : flex;
+    flex-direction: row;
+    align-items   : center; */
+    margin        : 5px 0;
+}
+
+
+/* 初始化下拉菜单 */
+#rMenu {position:absolute; visibility:hidden; text-align: left;padding: 2px;}
+.list-group-item{
+    border          : none;
+    background-color: gray;
+}
+.m{ width: 100%;  }
+#user{
+    width : 30px;
+    height: 30px;
+    margin: 10px;
+}
+#idea{
+    width : 100%;
+    height: 300px;
+    /* border: 2px solid green; */
+}
+#ideaLine{
+    display       : flex;
+    flex-direction: row;
+    align-items   : center;
+}
+#note{
+    height: 30px;
+    width : 250px;
+}
+#search{
+    background-color: transparent;
+    border          : none;
+    border-bottom   : 2px solid black;
+    outline         : none;
+    padding-bottom  : 10px;
+    margin-bottom   : 5px;
+    text-align      : center;
+    width           : 90%;
+    color           : black;
+}
+#sideNav{
+    display         : block;
+    position        : absolute;
+    left            : 0;
+    height          : 100%;
+    width           : 60px;
+    background-color: rgb(245,245,245);
+}
+#keywordContainer{
+    height   : 100%;
+    flex-grow: 1;
+    /* border   : solid 2px yellow; */
+}
+#noteContainer{
+    flex-grow     : 3;
+    height        : 100%;
+    border        : solid 2px rgb(245,245,245);
+    display       : flex;
+    flex-direction: column;
+    overflow-y    : auto;
+}
+#editLine{
+    width         : 100%;
+    height        : 70%;
+    display       : flex;
+    flex-direction: row;
+}
+#ideaContainer{
+    width : 100%;
+    height: 30%;
+}

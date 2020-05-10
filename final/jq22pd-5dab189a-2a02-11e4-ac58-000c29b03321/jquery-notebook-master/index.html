@@ -1,0 +1,39 @@
+<!doctype html>
+
+<html lang="en">
+
+    <head>
+
+        <title>jQuery Notebook Demo</title>
+
+        <meta charset='utf-8'>
+        <!-- <link href="font-awesome.css" rel="stylesheet"> -->
+
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="style.css">
+
+        <link rel="stylesheet" type="text/css" href="jquery.notebook.css">
+
+    </head>
+
+    <body>
+
+       
+
+    <div class="editor"></div>
+
+        <script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="jquery.notebook.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('.editor').notebook({
+                    autoFocus: true,
+                    placeholder: 'Type something awesome...'
+                });
+                $jq(".editor").notebook('code', "测试");
+            });
+        </script>
+    </body>
+
+</html>

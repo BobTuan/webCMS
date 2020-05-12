@@ -1,0 +1,154 @@
+<!-- <!doctype html> -->
+<!doctype html>
+
+<head>
+    <title>manage界面</title>
+    <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/rss.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/sideNav.css">
+    <!-- 第一个jquery -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.jqDock.min.js"></script>
+    <link rel="stylesheet" href="css/manage.css" type="text/css">
+    <script src="js/sideNav.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-3-3-4.css" type="text/css">
+    <link href="dist/summernote.css" rel="stylesheet" />
+    <!-- 第二个jquery -->
+    <script src="js/jquery1-10-2.js"></script>
+    <script type="text/javascript">
+        var $jq = $; //jquery.min.js的$重命名为j$
+        jQuery.noConflict();
+    </script>
+    <script src="js/bootstrap3-3-4.js"></script>
+    <script src="dist/summernote.js"></script>
+    <script src="dist/lang/summernote-zh-CN.js"></script>
+    <script type="text/javascript" src="js/tagsinput.js"></script>
+    <link rel="stylesheet" type="text/css" href="pageslide/jquery.pageslide.css" />
+    <link rel="stylesheet" type="text/css" href="css/tag.css" />
+    <style>
+        .list-group-item {
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="manageContainer">
+        <div id="sideNav"></div>
+        <div id="tree">
+            <div id="treeTitle">
+                <input type="text" id="search" placeholder="搜索" />
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start ">
+                            <h5 class="mb-1">List group </h5>
+                            <small>3 days ago</small>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start ">
+                        <h5 class="mb-1">List group </h5>
+                        <small>3 days ago</small>
+                </a>
+                </div>
+            </div>
+        </div>
+        <div id="dockContainer">
+            <ul id="jqDock">
+                <li><a class="dockItem" href="data.html"><img src="images/data/main.png" alt="Home"
+                            title="main&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" /></a></li>
+                <li><a class="dockItem" href="m-treeSlide.html" id="treeSlide"><img src="images/rss/notebook.png"
+                            alt="Contact" title="add&nbsp;&nbsp;&nbsp;&nbsp;" /></a></li>
+                <li><a class="dockItem" id="tagSlide" href="m-tagSlide.html"><img src="images/rss/tags.png" alt="portfolio"
+                            title="question&nbsp;&nbsp;&nbsp;&nbsp;" /></a></li>
+                <li><a class="dockItem" href="#"><img src="images/rss/more.png" alt="music"
+                            title="more&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" /></a></li>
+            </ul>
+        </div>
+        <div id="edit">
+            <div id="editLine">
+                <div id="keywordContainer">
+                    <div class="summernote" id="keywordEdit"></div>
+                </div>
+                <div id="noteContainer">
+                     <!-- <div id="editHeader"> -->
+                    <div id="editTitle">
+                        <input>&nbsp</input>
+                    </div>
+                    <div id="editTags">
+                        <div class="tagsinput-primary form-group">
+                            <input name="tagsinput" id="tagsinputval" class="tagsinput" data-role="tagsinput" value="faltui,这是一个标签" placeholder="输入后回车"/>
+                        </div>                    
+                    </div>
+    
+                    <!-- </div> -->
+                    <div class="summernote" id="noteEdit"></div>
+                </div>
+            </div>
+            <div id="ideaContainer">
+                <diV class="summernote" id="ideaEdit"></diV>
+            </div>
+        </div>
+    </div>
+
+    <!-- <img id="icon" src="images/user.png"> -->
+    <!-- <script type="text/javascript" src="js/rss.js"></script> -->
+</body>
+
+</html>
+<!-- 第三个jquery -->
+<script src="pageslide/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+    var $jjq = $; //jquery.min.js的$重命名为j$
+    jQuery.noConflict();
+</script>
+<script src="js/tree.js"></script>
+<script src="pageslide/jquery.pageslide.js"></script>
+<script src="pageslide/pageslide.js"></script>
+<script>
+    $jq(function () {
+        $jq('#keywordEdit').summernote({
+            height: 500,
+            tabsize: 2,
+            // airMode: true,
+            lang: 'zh-CN',
+            placeholder:"请输入关键字",
+            toolbar: [
+		                // ['color', ['color']],
+		                // ['font', ['bold', 'underline', 'clear']],
+		                // ['para', ['ul', ['ol']]],
+		                // ['fontsize', ['fontsize']]
+		              ]	
+            // popover: {
+            //     air: [
+            //     ['color', ['color']],
+            //     ['font', ['bold', 'underline', 'clear']],
+            //     ['para', ['ul','ol']],
+            // ]
+            // },
+        });
+        $('#keywordEdit').css('font-size','36px');
+        $jq('#ideaEdit').summernote({
+            height: 200,
+            tabsize: 2,
+            lang: 'zh-CN',
+            placeholder:"请输入想法",
+            toolbar: [
+		                // ['color', ['color']],
+		                // ['font', ['bold', 'underline', 'clear']],
+		                // ['para', ['ul', ['ol']]],
+		                // ['fontsize', ['fontsize']]
+		              ]	
+        });
+        $jq('#noteEdit').summernote({
+            height: 340,
+            tabsize: 2,
+            lang: 'zh-CN',
+            placeholder:"请输入笔记",
+        });
+    });
+</script>
+<style>
+    .note-editor .note-editable {
+        line-height: 1.2;
+        font-size  : 18px;
+    }
+</style>

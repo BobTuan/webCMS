@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
+<!-- <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script> -->
+<script src="js/jqueryMin1-10-2.js"></script>
+<script type="text/javascript">
+    var $jq = $; //jquery.min.js的$重命名为j$
+    jQuery.noConflict();
+</script>
+<script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+    <!-- summernote的样式和脚本 -->
+    <link href="dist/summernote.css" rel="stylesheet" />
+    <script src="dist/summernote.js"></script>
+    <script src="dist/lang/summernote-zh-CN.js"></script>
+<body>
+    <div id="article" class="summernote"></div>
+</body>
+
+<script>
+    // $jq('.single-member').click(function(){
+        $jq(function () {
+            $jq('#article').summernote({
+            height: 500,
+            tabsize: 2,
+            // airMode: true,
+            lang: 'zh-CN',
+            placeholder:"请输入关键字",
+        });
+        });
+        
+    // })
+</script>
+</html>

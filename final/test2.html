@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>jquery-contextmenu</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap-treeview/1.2.0/bootstrap-treeview.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css">
+</head>
+<body>
+<ul id="the-node" class="btn-group-vertical">
+	<li class="btn btn-primary">right click me 1</li>
+	<li class="btn btn-primary">right click me 2</li>
+	<li class="btn btn-primary">right click me 3</li>
+	<li class="btn btn-primary">right click me 4</li>
+</ul>
+
+<!-- Script -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script> -->
+<!-- <script src="https://cdn.bootcss.com/bootstrap-treeview/1.2.0/bootstrap-treeview.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.ui.position.js"></script> -->
+<script>
+$(function(){
+    //注册右键菜单的项与动作
+    $('#the-node').contextMenu({
+        selector: 'li', // 选择器，为某一类元素绑定右键菜单
+        callback: function(key, options) {
+            var m = "clicked: " + key + " on " + $(this).text();
+            window.console && console.log(m) || alert(m); 
+        },
+        items: {
+            "edit": {name: "Edit", icon: "edit"},
+            "cut": {name: "Cut", icon: "cut"},
+            "copy": {name: "Copy", icon: "copy"},
+            "paste": {name: "Paste", icon: "paste"},
+            "delete": {name: "Delete", icon: "delete"},
+            "sep1": "---------",
+            "quit": {name: "Quit", icon: function($element, key, item){ return 'context-menu-icon context-menu-icon-quit'; }}
+        }
+    });
+});
+</script>
+</body>
+</html>

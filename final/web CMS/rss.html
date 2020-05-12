@@ -2,11 +2,12 @@
 <head>
     <title>rss</title>
     <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8">
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrapMin4-3-1.css"> -->
+    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrapMin4-3-1.css">
     <link rel="stylesheet" type="text/css" media="screen" href="css/rss.css">
     <link rel="stylesheet" type="text/css" media="screen" href="css/sideNav.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrapMin3-3-7.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css">
     <script src="js/jqueryMin2-1-1.js"></script>
     <script src="js/bootstrapMin3-3-7.js"></script>
     <script type="text/javascript" src="js/jquery.js"></script>
@@ -21,6 +22,9 @@
     <link href='css/font.css' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/card.css">
     <link rel="stylesheet" type="text/css" href="css/contentDetail.css">
+    <link rel="stylesheet" type="text/css" href="pageslide/jquery.pageslide.rss.css" />
+
+    
     <style>
         .list-group-item {
             border: none;
@@ -28,6 +32,7 @@
         }
         .list-group-item:hover {
         background-color: rgb(234,234,234)!important;
+        z-index: 50;
         }
         .active{
             background-color: rgb(234,234,234)!important;
@@ -43,32 +48,32 @@
         <div id="feeder">
             <div id="feederCategory">
                 <div class="list-group " style="margin-top: 80px;">
-                    <a class="list-group-item active" aria-expanded="false" aria-controls="collapseOne">
-                        <span class="glyphicon glyphicon-refresh mr-2"></span>
-                        今天
-                        <span class="badge">0</span>
-                    </a>
-                    <a class="list-group-item" aria-expanded="false" aria-controls="collapseOne">
-                        <span class="glyphicon glyphicon-time mr-2"></span>
-                        最近
-                        <span class="badge">0</span>
-                    </a>
-                </div>
-            </div>
-            <div id="feederTitle">Feeds</div>
-            <div id="feederList">
-                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                     <a class="list-group-item .list-group-item-action" aria-expanded="false" aria-controls="collapseOne">
                         <span class="glyphicon glyphicon-list mr-2"></span>
                         所有
                         <span class="badge">4</span>
                     </a>
+                    <a class="list-group-item active" aria-expanded="false" aria-controls="collapseOne">
+                        <span class="glyphicon glyphicon-refresh mr-2"></span>
+                        今天
+                        <span class="badge">0</span>
+                    </a>
+                    <!-- <a class="list-group-item" aria-expanded="false" aria-controls="collapseOne">
+                        <span class="glyphicon glyphicon-time mr-2"></span>
+                        最近
+                        <span class="badge">0</span>
+                    </a> -->
                     <a class="list-group-item" aria-expanded="false" aria-controls="collapseOne">
                         <span class="glyphicon glyphicon-heart-empty mr-2"></span>
                         喜欢
                         <span class="badge">2</span>
                     </a>
-                    <a class="list-group-item" data-toggle="collapse" href="#collapseOne" aria-expanded="false"
+                </div>
+            </div>
+            <div id="feederTitle">Feeds</div>
+            <div id="feederList">
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">             
+                    <a class="list-group-item parent" data-toggle="collapse" href="#collapseOne" aria-expanded="false"
                         aria-controls="collapseOne">
                         <span id="triple" class="glyphicon glyphicon-chevron-down mr-2"></span>
                         学习
@@ -76,12 +81,12 @@
                     </a>
                     <div id="collapseOne" class="panel-collapse collapse">
                         <div class="list-group,margin-bottom=0">
-                            <a href="#" class="list-group-item">
+                            <a href="#" class="list-group-item child">
                                 <span class="glyphicon glyphicon-globe ml-3 mr-1"></span>
                                 cn
                                 <span class="badge badge-primary badge-pill">0</span>
                             </a>
-                            <a href="#" class="list-group-item">
+                            <a href="#" class="list-group-item child">
                                 <span class="glyphicon glyphicon-globe ml-3 mr-1"></span>
                                 dsp
                                 <span class="badge badge-primary badge-pill">0</span>
@@ -89,26 +94,48 @@
                         </div>
                     </div>
 
-                    <a class="list-group-item" data-toggle="collapse" href="#collapseTwo" aria-expanded="false"
+                    <a class="list-group-item parent" data-toggle="collapse" href="#collapseTwo" aria-expanded="false"
                         aria-controls="collapseOne">
                         <span id="triple" class="glyphicon glyphicon-chevron-down mr-2"></span>
-                        网络
+                        娱乐
                         <span class="badge">2</span>
                     </a>
                     <div id="collapseTwo" class="panel-collapse collapse">
                         <div class="list-group,margin-bottom=0">
-                            <a href="#" class="list-group-item">
+                            <a href="#" class="list-group-item child">
                                 <span class="glyphicon glyphicon-globe ml-3 mr-1"></span>
                                 阮一峰的网络日志
                                 <span class="badge badge-primary badge-pill">2</span>
                             </a>
-                            <a href="#" class="list-group-item">
+                            <a href="#" class="list-group-item child">
                                 <span class="glyphicon glyphicon-globe ml-3 mr-1"></span>
                                 pt
                                 <span class="badge badge-primary badge-pill">0</span>
                             </a>
                         </div>
                     </div>
+                <a class="list-group-item parent" data-toggle="collapse" href="#collapseThree" aria-expanded="false"
+                    aria-controls="collapseOne">
+                    <span id="triple" class="glyphicon glyphicon-chevron-down mr-2"></span>
+                    网络
+                    <span class="badge">2</span>
+                </a>
+                <div id="collapseThree" class="panel-collapse collapse">
+                    <div class="list-group,margin-bottom=0">
+                        <a href="#" class="list-group-item child">
+                            <span class="glyphicon glyphicon-globe ml-3 mr-1"></span>
+                            阮一峰的网络日志
+                            <span class="badge badge-primary badge-pill">2</span>
+                        </a>
+                        <a href="#" class="list-group-item child">
+                            <span class="glyphicon glyphicon-globe ml-3 mr-1"></span>
+                            pt
+                            <span class="badge badge-primary badge-pill">0</span>
+                        </a>
+                        
+                    </div>
+                </div>
+                    
                 </div>
             </div>
         </div>
@@ -132,7 +159,7 @@
         <ul id="jqDock">
             <li><a class="dockItem" href="data.html"><img src="images/data/main.png" alt="Home"
                 title="main&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" /></a></li>
-            <li><a class="dockItem" href="#"><img src="images/rss/rss.png" alt="Contact"
+            <li><a class="dockItem" id='rssSlide' href="r-rssSlide.html"><img src="images/rss/rss.png" alt="Contact"
                         title="rss&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" /></a></li>
             <li><a class="dockItem" href="#"><img src="images/rss/notice.png" alt="portfolio"
                         title="notic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" /></a></li>
@@ -147,21 +174,6 @@
         <!-- 主体内容部分 -->
         <div id="light" class="white_content">
             文本（text），从词源上来说，它表示编织的东西。这与中国“文”的概念颇有类似之处。“文”取象人形，指纹身，指花纹。《说文解字叙》称：“仓颉初作书，盖依类象形，故曰文。”“文者，物象之本。”物象均具纹路色彩，因以“文”来指称。《周易·系辞下》记伏羲氏“观鸟兽之文”，鸟兽身上的花纹彩羽。该书又载“物相杂故曰文”，物体的形状、线条色彩相互交错，这也是文。“观乎天文，以察时变，观乎人文，以化成天下。”《说文解字》解释“文”为“错画也。”
-            但是文本的概念后来主要变成了：“任何由书写所固定下来的任何话语。”对语言学家来说，文本指的是作品的可见可感的表层结构，是一系列语句串联而成的连贯序列。文本可能只是一个单句，例如谚语、格言、招牌等，但比较普遍的是由一系列句子组成。文本和段落的区别在于，文本构成了一个相对封闭、自足的系统。前苏联符号学家洛特曼指出，文本是外观的，即用一定的符号来表示；它是有限的，既有头有尾；它有内部结构。罗兰·巴特文本一方面是能指，即实际的语言符号以及由它们所组成的词、句子和段落章节，另一方面是所指，即固定的确定的和单一的意思，为表达这种意思的正确性所限定。以上从技术上中性地对文本做出基本界定。
-            “文本”一词来自英文text，另有本文、正文、语篇和课文等多种译法。这个词广泛应用于语言学和文体学中，而且也在文学理论与批评中扮演活跃的角色。但它含义丰富而不易界定，给实际运用和理解带来一定困难。可以一般地说，文本是语言的实际运用形态。而在具体场合中，文本是根据一定的语言衔接和语义连贯规则而组成的整体语句或语句系统，有待于读者阅读。
-            和文本相关的是文本学和解释学这两个领域。文本（text），从词源上来说，它表示编织的东西。这与中国“文”的概念颇有类似之处。“文”取象人形，指纹身，指花纹。《说文解字叙》称：“仓颉初作书，盖依类象形，故曰文。”“文者，物象之本。”物象均具纹路色彩，因以“文”来指称。《周易·系辞下》记伏羲氏“观鸟兽之文”，鸟兽身上的花纹彩羽。该书又载“物相杂故曰文”，物体的形状、线条色彩相互交错，这也是文。“观乎天文，以察时变，观乎人文，以化成天下。”《说文解字》解释“文”为“错画也。”
-            但是文本的概念后来主要变成了：“任何由书写所固定下来的任何话语。”对语言学家来说，文本指的是作品的可见可感的表层结构，是一系列语句串联而成的连贯序列。文本可能只是一个单句，例如谚语、格言、招牌等，但比较普遍的是由一系列句子组成。文本和段落的区别在于，文本构成了一个相对封闭、自足的系统。前苏联符号学家洛特曼指出，文本是外观的，即用一定的符号来表示；它是有限的，既有头有尾；它有内部结构。罗兰·巴特文本一方面是能指，即实际的语言符号以及由它们所组成的词、句子和段落章节，另一方面是所指，即固定的确定的和单一的意思，为表达这种意思的正确性所限定。以上从技术上中性地对文本做出基本界定。
-            “文本”一词来自英文text，另有本文、正文、语篇和课文等多种译法。这个词广泛应用于语言学和文体学中，而且也在文学理论与批评中扮演活跃的角色。但它含义丰富而不易界定，给实际运用和理解带来一定困难。可以一般地说，文本是语言的实际运用形态。而在具体场合中，文本是根据一定的语言衔接和语义连贯规则而组成的整体语句或语句系统，有待于读者阅读。
-            和文本相关的是文本学和解释学这两个领域。文本（text），从词源上来说，它表示编织的东西。这与中国“文”的概念颇有类似之处。“文”取象人形，指纹身，指花纹。《说文解字叙》称：“仓颉初作书，盖依类象形，故曰文。”“文者，物象之本。”物象均具纹路色彩，因以“文”来指称。《周易·系辞下》记伏羲氏“观鸟兽之文”，鸟兽身上的花纹彩羽。该书又载“物相杂故曰文”，物体的形状、线条色彩相互交错，这也是文。“观乎天文，以察时变，观乎人文，以化成天下。”《说文解字》解释“文”为“错画也。”
-            但是文本的概念后来主要变成了：“任何由书写所固定下来的任何话语。”对语言学家来说，文本指的是作品的可见可感的表层结构，是一系列语句串联而成的连贯序列。文本可能只是一个单句，例如谚语、格言、招牌等，但比较普遍的是由一系列句子组成。文本和段落的区别在于，文本构成了一个相对封闭、自足的系统。前苏联符号学家洛特曼指出，文本是外观的，即用一定的符号来表示；它是有限的，既有头有尾；它有内部结构。罗兰·巴特文本一方面是能指，即实际的语言符号以及由它们所组成的词、句子和段落章节，另一方面是所指，即固定的确定的和单一的意思，为表达这种意思的正确性所限定。以上从技术上中性地对文本做出基本界定。
-            “文本”一词来自英文text，另有本文、正文、语 篇和课文等多种译法。这个词广泛应用于语言学和文体学中，而且也在文学理论与批评中扮演活跃的角色。但它含义丰富而不易界定，给实际运用和理解带来一定困难。可以一般地说，文本是语言的实际运用形态。而在具体场合中，文本是根据一定的语言衔接和语义连贯规则而组成的整体语句或语句系统，有待于读者阅读。
-            和文本相关的是文本学和解释学这两个领域。文本（text），从词源上来说，它表示编织的东西。这与中国“文”的概念颇有类似之处。“文”取象人形，指纹身，指花纹。《说文解字叙》称：“仓颉初作书，盖依类象形，故曰文。”“文者，物象之本。”物象均具纹路色彩，因以“文”来指称。《周易·系辞下》记伏羲氏“观鸟兽之文”，鸟兽身上的花纹彩羽。该书又载“物相杂故曰文”，物体的形状、线条色彩相互交错，这也是文。“观乎天文，以察时变，观乎人文，以化成天下。”《说文解字》解释“文”为“错画也。”
-            但是文本的概念后来主要变成了：“任何由书写所固定下来的任何话语。”对语言学家来说，文本指的是作品的可见可感的表层结构，是一系列语句串联而成的连贯序列。文本可能只是一个单句，例如谚语、格言、招牌等，但比较普遍的是由一系列句子组成。文本和段落的区别在于，文本构成了一个相对封闭、自足的系统。前苏联符号学家洛特曼指出，文本是外观的，即用一定的符号来表示；它是有限的，既有头有尾；它有内部结构。罗兰·巴特文本一方面是能指，即实际的语言符号以及由它们所组成的词、句子和段落章节，另一方面是所指，即固定的确定的和单一的意思，为表达这种意思的正确性所限定。以上从技术上中性地对文本做出基本界定。
-            “文本”一词来自英文text，另有本文、正文、语篇和课文等多种译法。这个词广泛应用于语言学和文体学中，而且也在文学理论与批评中扮演活跃的角色。但它含义丰富而不易界定，给实际运用和理解带来一定困难。可以一般地说，文本是语言的实际运用形态。而在具体场合中，文本是根据一定的语言衔接和语义连贯规则而组成的整体语句或语句系统，有待于读者阅读。
-            和文本相关的是文本学和解释学这两个领域。文本（text），从词源上来说，它表示编织的东西。这与中国“文”的概念颇有类似之处。“文”取象人形，指纹身，指花纹。《说文解字叙》称：“仓颉初作书，盖依类象形，故曰文。”“文者，物象之本。”物象均具纹路色彩，因以“文”来指称。《周易·系辞下》记伏羲氏“观鸟兽之文”，鸟兽身上的花纹彩羽。该书又载“物相杂故曰文”，物体的形状、线条色彩相互交错，这也是文。“观乎天文，以察时变，观乎人文，以化成天下。”《说文解字》解释“文”为“错画也。”
-            但是文本的概念后来主要变成了：“任何由书写所固定下来的任何话语。”对语言学家来说，文本指的是作品的可见可感的表层结构，是一系列语句串联而成的连贯序列。文本可能只是一个单句，例如谚语、格言、招牌等，但比较普遍的是由一系列句子组成。文本和段落的区别在于，文本构成了一个相对封闭、自足的系统。前苏联符号学家洛特曼指出，文本是外观的，即用一定的符号来表示；它是有限的，既有头有尾；它有内部结构。罗兰·巴特文本一方面是能指，即实际的语言符号以及由它们所组成的词、句子和段落章节，另一方面是所指，即固定的确定的和单一的意思，为表达这种意思的正确性所限定。以上从技术上中性地对文本做出基本界定。
-            “文本”一词来自英文text，另有本文、正文、语篇和课文等多种译法。这个词广泛应用于语言学和文体学中，而且也在文学理论与批评中扮演活跃的角色。但它含义丰富而不易界定，给实际运用和理解带来一定困难。可以一般地说，文本是语言的实际运用形态。而在具体场合中，文本是根据一定的语言衔接和语义连贯规则而组成的整体语句或语句系统，有待于读者阅读。
-            和文本相关的是文本学和解释学这两个领域。
         </div>
         <!-- 灰色渐变效果 -->
         <div id="fade" class="black_overlay"></div>
@@ -171,5 +183,69 @@
           <div class="cross"></div>
         </a>
     </div>
+    <script src="js/jqueryMin3-3-1.js"></script>
+    <script type="text/javascript">
+        var $jjjq = $; //jquery.min.js的$重命名为j$
+        jQuery.noConflict();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.js"></script>
+    <script>
+        $jjjq(function(){
+        //注册右键菜单的项与动作
+            $jjjq('.list-group').contextMenu({
+                selector: 'a', // 选择器，为某一类元素绑定右键菜单
+                callback: function(key, options) {
+                    var m = "clicked: " + key + " on " + $(this).text();
+                    window.console && console.log(m) || alert(m); 
+                },
+                items: {
+                    "edit": {name: "Edit", icon: "edit"},
+                    "delete": {name: "Delete", icon: "delete"},
+                    "sep1": "---------",
+                    "quit": {name: "Quit", icon: function($element, key, item){ return 'context-menu-icon context-menu-icon-quit'; }}
+                }
+            });
+        });
+        $jjjq(function(){
+        //注册右键菜单的项与动作
+            $jjjq('.panel-group').contextMenu({
+                selector: 'a.list-group-item.child', // 选择器，为某一类元素绑定右键菜单
+                callback: function(key, options) {
+                    var m = "clicked: " + key + " on " + $(this).text();
+                    window.console && console.log(m) || alert(m); 
+                },
+                items: {
+                    "edit": {name: "Edit", icon: "edit"},
+                    "delete": {name: "Delete", icon: "delete"},
+                    "sep1": "---------",
+                    "quit": {name: "Quit", icon: function($element, key, item){ return 'context-menu-icon context-menu-icon-quit'; }}
+                }
+            });
+        });
+        $jjjq(function(){
+        //注册右键菜单的项与动作
+            $jjjq('.panel-group').contextMenu({
+                selector: 'a.list-group-item.parent', // 选择器，为某一类元素绑定右键菜单
+                callback: function(key, options) {
+                    var m = "clicked: " + key + " on " + $(this).text();
+                    window.console && console.log(m) || alert(m); 
+                },
+                items: {
+                    "edit": {name: "Edit", icon: "edit"},
+                    // "delete": {name: "Delete", icon: "delete"},
+                    "sep1": "---------",
+                    "quit": {name: "Quit", icon: function($element, key, item){ return 'context-menu-icon context-menu-icon-quit'; }}
+                }
+            });
+        });
+    </script>
+    <script src="pageslide/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript">
+        var $jjq = $; //jquery.min.js的$重命名为j$
+        jQuery.noConflict();
+    </script>
+    <script src="pageslide/jquery.pageslide.js"></script>
+    <script src="pageslide/pageslide.js"></script>
 </body>
+
 </html>

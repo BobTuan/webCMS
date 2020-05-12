@@ -54,8 +54,8 @@ canvas{position:absolute;z-index:-1;}
 .cross::after {
     transform: rotate(-45deg);
 }
-.cross:: before,
-.cross:: after {
+.cross::before,
+.cross::after {
     content   : '';
     width     : 1px;
     height    : 20px;
@@ -63,8 +63,8 @@ canvas{position:absolute;z-index:-1;}
     position  : absolute;
     right     : 10px;
 }
-.cross: hover:: before,
-.cross: hover:: after{
+.cross:hover:: before,
+.cross:hover:: after{
   background: white;
 }
 #pageslide {

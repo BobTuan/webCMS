@@ -5,25 +5,32 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrapMin4-3-1.css">
     <link rel="stylesheet" type="text/css" media="screen" href="css/rss.css">
     <link rel="stylesheet" type="text/css" media="screen" href="css/sideNav.css">
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
+
+    <!-- <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> -->
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrapMin3-3-7.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css">
-    <script src="js/jqueryMin2-1-1.js"></script>
-    <script src="js/bootstrapMin3-3-7.js"></script>
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/jquery.jqDock.min.js"></script>
-    <script src="js/sideNav.js"></script>
-    <script src="js/jqueryMin2-1-1.js"></script>
+    <!-- <script src="js/jqueryMin2-1-1.js"></script> -->
+    <script src="js/jqueryMin1-10-2.js"></script>
     <script type="text/javascript">
         var $jq = $; //jquery.min.js的$重命名为j$
         jQuery.noConflict();
     </script>
-    <script src="js/scrollgress.js"></script>
+    <script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+    <!-- <script src="js/bootstrapMin3-3-7.js"></script> -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.jqDock.min.js"></script>
+    <script src="js/sideNav.js"></script>
+    <!-- <script src="js/jqueryMin2-1-1.js"></script>
+    <script type="text/javascript">
+        var $jq = $; //jquery.min.js的$重命名为j$
+        jQuery.noConflict();
+    </script>
+    <script src="js/scrollgress.js"></script> -->
     <link href='css/font.css' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/card.css">
     <link rel="stylesheet" type="text/css" href="css/contentDetail.css">
     <link rel="stylesheet" type="text/css" href="pageslide/jquery.pageslide.rss.css" />
-
     
     <style>
         .list-group-item {
@@ -58,11 +65,6 @@
                         今天
                         <span class="badge">0</span>
                     </a>
-                    <!-- <a class="list-group-item" aria-expanded="false" aria-controls="collapseOne">
-                        <span class="glyphicon glyphicon-time mr-2"></span>
-                        最近
-                        <span class="badge">0</span>
-                    </a> -->
                     <a class="list-group-item" aria-expanded="false" aria-controls="collapseOne">
                         <span class="glyphicon glyphicon-heart-empty mr-2"></span>
                         喜欢
@@ -147,10 +149,8 @@
                 </div>
             </div>
             <div class="cardContainer">
-                <!-- Team members structure start -->
                 <div id="w0" class="team-members row">
                 </div>
-                <!-- Team members structure start -->
             </div>
         </div>
         <canvas></canvas>
@@ -170,10 +170,15 @@
     <img id="icon" src="images/rabish.png">
     <script type="text/javascript" src="js/card.js"></script>
     <script type="text/javascript" src="js/rss.js"></script>
+    <!-- summernote的样式和脚本 -->
+    <link href="dist/summernote.css" rel="stylesheet" />
+    <script src="dist/summernote.js"></script>
+    <script src="dist/lang/summernote-zh-CN.js"></script>
     <div>
         <!-- 主体内容部分 -->
         <div id="light" class="white_content">
-            文本（text），从词源上来说，它表示编织的东西。这与中国“文”的概念颇有类似之处。“文”取象人形，指纹身，指花纹。《说文解字叙》称：“仓颉初作书，盖依类象形，故曰文。”“文者，物象之本。”物象均具纹路色彩，因以“文”来指称。《周易·系辞下》记伏羲氏“观鸟兽之文”，鸟兽身上的花纹彩羽。该书又载“物相杂故曰文”，物体的形状、线条色彩相互交错，这也是文。“观乎天文，以察时变，观乎人文，以化成天下。”《说文解字》解释“文”为“错画也。”
+            <!-- 文本（text），从词源上来说，它表示编织的东西。这与中国“文”的概念颇有类似之处。“文”取象人形，指纹身，指花纹。《说文解字叙》称：“仓颉初作书，盖依类象形，故曰文。”“文者，物象之本。”物象均具纹路色彩，因以“文”来指称。《周易·系辞下》记伏羲氏“观鸟兽之文”，鸟兽身上的花纹彩羽。该书又载“物相杂故曰文”，物体的形状、线条色彩相互交错，这也是文。“观乎天文，以察时变，观乎人文，以化成天下。”《说文解字》解释“文”为“错画也。” -->
+            <div id="article" class="summernote"></div>
         </div>
         <!-- 灰色渐变效果 -->
         <div id="fade" class="black_overlay"></div>
@@ -246,6 +251,21 @@
     </script>
     <script src="pageslide/jquery.pageslide.js"></script>
     <script src="pageslide/pageslide.js"></script>
+    <!-- <script src="js/jquery1-10-2.js"></script>
+    <script type="text/javascript">
+        var $jq = $; //jquery.min.js的$重命名为j$
+        jQuery.noConflict();
+    </script> -->
+    <script>
+        $jq(function(){
+            $jq('#article').summernote({
+            height: 340,
+            tabsize: 2,
+            lang: 'zh-CN',
+            placeholder:"请输入笔记",
+        });
+        })
+    </script>
 </body>
 
 </html>

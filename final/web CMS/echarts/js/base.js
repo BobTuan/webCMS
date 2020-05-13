@@ -15,8 +15,8 @@ var timer = setInterval(function () {
     var second = date.getSeconds();         //秒
     var day    = date.getDay();             //获取当前星期几 
     var ampm   = hours < 12 ? 'am' : 'pm';
-    $('#time').html(fnW(hours) + ":" + fnW(minute) + ":" + fnW(second));
-    $('#date').html('<span>' + year + '/' + (month + 1) + '/' + data + '</span><span>' + ampm + '</span><span>周' + day + '</span>')
+    $jq('#time').html(fnW(hours) + ":" + fnW(minute) + ":" + fnW(second));
+    $jq('#date').html('<span>' + year + '/' + (month + 1) + '/' + data + '</span><span>' + ampm + '</span><span>周' + day + '</span>')
 
 }, 1000)
 
@@ -51,7 +51,7 @@ function chart1() {
         str += '<p><span><i class="legend" style="background:' + startColor[i] + '"></i></span>' + data[i].name + '<span class="pie-number" style="color:' + startColor[i] + '">' + data[i].value + '</span>' + Number(data[i].percent).toFixed(2) + '%</p>';
     }
 
-    $('.pie-data').append(str);
+    $jq('.pie-data').append(str);
 
 
     function deepCopy(obj) {
@@ -192,31 +192,31 @@ chart1()
 
 
 //阅读数据还是笔记数据
-$("#barType").on('click', 'li', function () {
-    $(this).addClass('active').siblings('li').removeClass('active');
-    $('#barTitle').html($(this).html() + '数据');
-    $('#tabBtn').data('state', $(this).data('value'));
-    if ($(this).data('value') == 1) {
-        $('.table1').eq(0).show().siblings('table').hide();
-    } else if ($(this).data('value') == 2) {
-        $('.table1').eq(1).show().siblings('table').hide();
+$jq("#barType").on('click', 'li', function () {
+    $jq(this).addClass('active').siblings('li').removeClass('active');
+    $jq('#barTitle').html($jq(this).html() + '数据');
+    $jq('#tabBtn').data('state', $jq(this).data('value'));
+    if ($jq(this).data('value') == 1) {
+        $jq('.table1').eq(0).show().siblings('table').hide();
+    } else if ($jq(this).data('value') == 2) {
+        $jq('.table1').eq(1).show().siblings('table').hide();
     }
-    chart3($(this).data('value'), 0);
-    chart4(chart4Data, $(this).data('value'), 0);
+    chart3($jq(this).data('value'), 0);
+    chart4(chart4Data, $jq(this).data('value'), 0);
 })
 
 //阅读还是笔记
-$("#barTypes").on('click', 'li', function () {
-    $(this).addClass('active').siblings('li').removeClass('active');
-    $('#barTitles').html($(this).html() + '数据');
-    $('#tabBtns').data('state', $(this).data('value'));
-    if ($(this).data('value') == 1) {
-        $('.table2').eq(0).show().siblings('table').hide();
-    } else if ($(this).data('value') == 2) {
-        $('.table2').eq(1).show().siblings('table').hide();
+$jq("#barTypes").on('click', 'li', function () {
+    $jq(this).addClass('active').siblings('li').removeClass('active');
+    $jq('#barTitles').html($jq(this).html() + '数据');
+    $jq('#tabBtns').data('state', $jq(this).data('value'));
+    if ($jq(this).data('value') == 1) {
+        $jq('.table2').eq(0).show().siblings('table').hide();
+    } else if ($jq(this).data('value') == 2) {
+        $jq('.table2').eq(1).show().siblings('table').hide();
     }
-    chart3($(this).data('value'), 1);
-    chart4(chart4Data, $(this).data('value'), 1);
+    chart3($jq(this).data('value'), 1);
+    chart4(chart4Data, $jq(this).data('value'), 1);
 
 })
 
@@ -285,35 +285,35 @@ function chart3(type, chartType) {
         data = ['入库件', '在库件'];
 
         if (chartType == '') {
-            $(' .dph-data1').html(data_[0].value);
-            $(' .dph-data2').html(data_[1].value + data_[3].value);
-            $(' .dph-data3').html(data_[3].value);
-            $(' .dph-data4').html(data_[2].value);
-            $(' .dph-data5').html(data_[1].value);
-            $(' .dph-data6').html(data_[4].value + data_[5].value);
-            $(' .dph-data7').html(data_[4].value);
-            $(' .dph-data8').html(data_[5].value);
-            $(' .dph-data9').html(data_[6].value);
+            $jq(' .dph-data1').html(data_[0].value);
+            $jq(' .dph-data2').html(data_[1].value + data_[3].value);
+            $jq(' .dph-data3').html(data_[3].value);
+            $jq(' .dph-data4').html(data_[2].value);
+            $jq(' .dph-data5').html(data_[1].value);
+            $jq(' .dph-data6').html(data_[4].value + data_[5].value);
+            $jq(' .dph-data7').html(data_[4].value);
+            $jq(' .dph-data8').html(data_[5].value);
+            $jq(' .dph-data9').html(data_[6].value);
         } else if (chartType == 0) {
-            $('.table1 .dph-data1').html(data_[0].value);
-            $('.table1 .dph-data2').html(data_[1].value + data_[3].value);
-            $('.table1 .dph-data3').html(data_[3].value);
-            $('.table1 .dph-data4').html(data_[2].value);
-            $('.table1 .dph-data5').html(data_[1].value);
-            $('.table1 .dph-data6').html(data_[4].value + data_[5].value);
-            $('.table1 .dph-data7').html(data_[4].value);
-            $('.table1 .dph-data8').html(data_[5].value);
-            $('.table1 .dph-data9').html(data_[6].value);
+            $jq('.table1 .dph-data1').html(data_[0].value);
+            $jq('.table1 .dph-data2').html(data_[1].value + data_[3].value);
+            $jq('.table1 .dph-data3').html(data_[3].value);
+            $jq('.table1 .dph-data4').html(data_[2].value);
+            $jq('.table1 .dph-data5').html(data_[1].value);
+            $jq('.table1 .dph-data6').html(data_[4].value + data_[5].value);
+            $jq('.table1 .dph-data7').html(data_[4].value);
+            $jq('.table1 .dph-data8').html(data_[5].value);
+            $jq('.table1 .dph-data9').html(data_[6].value);
         } else if (chartType == 1) {
-            $('.table2 .dph-data1').html(data_[0].value);
-            $('.table2 .dph-data2').html(data_[1].value + data_[3].value);
-            $('.table2 .dph-data3').html(data_[3].value);
-            $('.table2 .dph-data4').html(data_[2].value);
-            $('.table2 .dph-data5').html(data_[1].value);
-            $('.table2 .dph-data6').html(data_[4].value + data_[5].value);
-            $('.table2 .dph-data7').html(data_[4].value);
-            $('.table2 .dph-data8').html(data_[5].value);
-            $('.table2 .dph-data9').html(data_[6].value);
+            $jq('.table2 .dph-data1').html(data_[0].value);
+            $jq('.table2 .dph-data2').html(data_[1].value + data_[3].value);
+            $jq('.table2 .dph-data3').html(data_[3].value);
+            $jq('.table2 .dph-data4').html(data_[2].value);
+            $jq('.table2 .dph-data5').html(data_[1].value);
+            $jq('.table2 .dph-data6').html(data_[4].value + data_[5].value);
+            $jq('.table2 .dph-data7').html(data_[4].value);
+            $jq('.table2 .dph-data8').html(data_[5].value);
+            $jq('.table2 .dph-data9').html(data_[6].value);
         }
 
         series_data = [
@@ -369,29 +369,29 @@ function chart3(type, chartType) {
     } else if (type == 2) {
         data = ['入库件', '在库件', '出库件', '丢失件', '撤销件'];
         if (chartType == '') {
-            $('.mail-data1').html(data_[0].value);
-            $('.mail-data2').html(data_[2].value + data_[5].value);
-            $('.mail-data3').html(data_[1].value);
-            $('.mail-data4').html(data_[2].value);
-            $('.mail-data5').html(data_[3].value);
-            $('.mail-data6').html(data_[4].value);
-            $('.mail-data7').html(data_[5].value);
+            $jq('.mail-data1').html(data_[0].value);
+            $jq('.mail-data2').html(data_[2].value + data_[5].value);
+            $jq('.mail-data3').html(data_[1].value);
+            $jq('.mail-data4').html(data_[2].value);
+            $jq('.mail-data5').html(data_[3].value);
+            $jq('.mail-data6').html(data_[4].value);
+            $jq('.mail-data7').html(data_[5].value);
         } else if (chartType == 0) {
-            $('.table1 .mail-data1').html(data_[0].value);
-            $('.table1 .mail-data2').html(data_[2].value + data_[5].value);
-            $('.table1 .mail-data3').html(data_[1].value);
-            $('.table1 .mail-data4').html(data_[2].value);
-            $('.table1 .mail-data5').html(data_[3].value);
-            $('.table1 .mail-data6').html(data_[4].value);
-            $('.table1 .mail-data7').html(data_[5].value);
+            $jq('.table1 .mail-data1').html(data_[0].value);
+            $jq('.table1 .mail-data2').html(data_[2].value + data_[5].value);
+            $jq('.table1 .mail-data3').html(data_[1].value);
+            $jq('.table1 .mail-data4').html(data_[2].value);
+            $jq('.table1 .mail-data5').html(data_[3].value);
+            $jq('.table1 .mail-data6').html(data_[4].value);
+            $jq('.table1 .mail-data7').html(data_[5].value);
         } else if (chartType == 1) {
-            $('.table2 .mail-data1').html(data_[0].value);
-            $('.table2 .mail-data2').html(data_[2].value + data_[5].value);
-            $('.table2 .mail-data3').html(data_[1].value);
-            $('.table2 .mail-data4').html(data_[2].value);
-            $('.table2 .mail-data5').html(data_[3].value);
-            $('.table2 .mail-data6').html(data_[4].value);
-            $('.table2 .mail-data7').html(data_[5].value);
+            $jq('.table2 .mail-data1').html(data_[0].value);
+            $jq('.table2 .mail-data2').html(data_[2].value + data_[5].value);
+            $jq('.table2 .mail-data3').html(data_[1].value);
+            $jq('.table2 .mail-data4').html(data_[2].value);
+            $jq('.table2 .mail-data5').html(data_[3].value);
+            $jq('.table2 .mail-data6').html(data_[4].value);
+            $jq('.table2 .mail-data7').html(data_[5].value);
         }
 
         series_data = [
@@ -628,11 +628,11 @@ function chart3(type, chartType) {
 // 默认显示笔记数据
 chart3(1, '')
 //更新显示的数据
-$('#switchBtn').on('click', 'span', function () {
-    $(this).addClass('active').siblings().removeClass('active');
-    if ($(this).data('datatype') == 'income') {
-        $('#totalProfit').html('100');
-    } else if ($(this).data('datatype') == 'expend') {
-        $('#totalProfit').html('200');
+$jq('#switchBtn').on('click', 'span', function () {
+    $jq(this).addClass('active').siblings().removeClass('active');
+    if ($jq(this).data('datatype') == 'income') {
+        $jq('#totalProfit').html('100');
+    } else if ($jq(this).data('datatype') == 'expend') {
+        $jq('#totalProfit').html('200');
     }
 })

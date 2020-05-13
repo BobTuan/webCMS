@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>根据百分比显示大小的气泡图带动效</title>
+  <script src="https://www.jq22.com/jquery/d3.js"></script>
+  <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+
+  <style>
+    body { 
+      font-family: "avenir next", Arial, sans-serif;
+      font-size: 12px;
+      margin: 0;
+      background: #0f1231;
+    }
+    #bubble-box{
+      width: 400px;
+      height: 400px;
+      position: relative;
+      border: 1px solid #DD5246;
+      margin-left: 100px;
+      margin-top: 100px;
+    }
+    circle{
+      position: relative;
+    }
+    @keyframes idle {
+      from, to {
+        transform: translate(0, 3%);
+      }
+      25% {
+        transform: translate(-3%, 0);
+      }
+      50% {
+        transform: translate(0, -3%);
+      }
+      75% {
+        transform: translate(3%, 0);
+      }
+    }
+    
+.bubble1{
+  animation: idle 4s linear infinite;
+}
+  </style>
+</head>
+
+<body>
+<div id = "bubble-box"></div>
+<script>
+function bubbleChart() {
+  const width = 400;
+  const height = 400;
+  const centre = { x: width/2, y: height/2 };
+  //该参数表示气泡出来时候的引力大小，也就是控制快慢的，可以根据宽高具体调整
+  const forceStrength = 0.02;
+
+  // these will be set in createNodes and chart functions
+  let svg = null;
+  let bubbles = null;
+  let labels = null;
+  let nodes = [];
+  function charge(d) {
+    return Math.pow(d.radius, 2.0) * 0.01
+  }
+  const simulation = d3.forceSimulation()
+    .force('charge', d3.forceManyBody().strength(charge))
+    // .force('center', d3.forceCenter(centre.x, centre.y))
+    .force('x', d3.forceX().strength(forceStrength).x(centre.x))
+    .force('y', d3.forceY().strength(forceStrength).y(centre.y))
+    .force('collision', d3.forceCollide().radius(d => d.radius + 5));
+
+  // force simulation starts up automatically, which we don't want as there aren't any nodes yet
+  simulation.stop();
+
+  // data manipulation function takes raw data from csv and converts it into an array of node objects
+  // each node will store data and visualisation values to draw a bubble
+  // rawData is expected to be an array of data objects, read in d3.csv
+  // function returns the new node array, with a node for each element in the rawData input
+  function createNodes(rawData) {
+    const maxSize = d3.max(rawData, d => +d.size);
+    const radiusScale = d3.scaleSqrt()
+      .domain([0, maxSize])
+      //此参数控制气泡的大小，表示气泡的半径范围
+      .range([0, 50])
+
+    const myNodes = rawData.map(d => ({
+      ...d,
+      radius: radiusScale(+d.size),
+      size: +d.size,
+      x: Math.random() * width,
+      y: Math.random() * height
+    }))
+    return myNodes;
+  }
+
+  let chart = function chart(selector, rawData) {
+    nodes = createNodes(rawData);
+    svg = d3.select(selector)
+      .append('svg')
+      .attr('width', width)
+      .attr('height', height)
+    const elements = svg.selectAll('.bubble')
+      .data(nodes, d => d.id)
+      .enter()
+      .append('g')
+
+    //Container for the gradients
+    var defs = svg.append("defs");
+    var filter = defs.append("filter")
+      .attr("id","glow");
+
+    filter.append("feGaussianBlur")
+      .attr("class", "blur")
+      .attr("stdDeviation","4")
+      .attr("filterUnits","userSpaceOnUse")
+      .attr("result","coloredBlur");
+
+    var feMerge = filter.append("feMerge");
+    feMerge.append("feMergeNode")
+      .attr("in","coloredBlur");
+    feMerge.append("feMergeNode")
+      .attr("in","SourceGraphic");
+
+    bubbles = elements
+      .append('circle')
+      .classed('bubble', true)
+      .attr('r', d => d.radius)
+      .attr('fill', d => 'transparent')
+      .attr('stroke', d => '#DD5246')
+    labels = elements
+      .append('text')
+      .style('fill', '#DD5246')
+    labels1 = labels  
+      .append('tspan')
+      .attr('dy', '-0.1em')
+      .style('text-anchor', 'middle')
+      .style('font-size', 14)
+      .text(d => {
+        //加此判断是避免字数太多而气泡的半径太小，盛不下
+        if(d.size>100){
+          return d.id
+        }
+      })
+    labels2 = labels  
+      .append('tspan')
+      .attr('dy', '1.1em')
+      .style('text-anchor', 'middle')
+      .style('font-size', 12)
+      .text(d => {
+        //加此判断是避免字数太多而气泡的半径太小，盛不下，现在只能根据数值大小判断，这一点感觉不科学，应该根据半径判断
+        if(d.size>100){
+          return d.groupid
+        }
+      })
+    simulation.nodes(nodes)
+      .on('tick', ticked)
+      .restart();
+
+    d3.selectAll("circle")
+		.style("filter","url(#glow)");
+  }
+  function ticked() {
+    bubbles
+      .attr('cx', d => d.x)
+      .attr('cy', d => d.y)
+    labels
+      .attr('x', d => d.x)
+      .attr('y', d => d.y)
+    labels1
+      .attr('x', d => d.x)
+      .attr('y', d => d.y)  
+    labels2
+      .attr('x', d => d.x)
+      .attr('y', d => d.y)  
+  }
+  return chart;
+}
+
+// new bubble chart instance
+let myBubbleChart = bubbleChart();
+const datadata=[
+  {id:'北京',groupid:'24.32%',size:900},
+  {id:'河北',groupid:'16.48%',size:610},
+  {id:'山东',groupid:'12.7%',size:470},
+  {id:'广东',groupid:'10.81%',size:400},
+  {id:'新疆',groupid:'10.81%',size:400},
+  {id:'云南',groupid:'8.1%',size:300},
+  {id:'云南',groupid:'8.1%',size:300},
+  {id:'云南',groupid:'8.1%',size:300},
+  {id:'湖南',groupid:'8.1%',size:300},
+  {id:'北京',groupid:'24.32%',size:900},
+  {id:'河北',groupid:'16.48%',size:610},
+  {id:'山东',groupid:'12.7%',size:470},
+  {id:'广东',groupid:'10.81%',size:400},
+  {id:'新疆',groupid:'10.81%',size:400},
+  {id:'云南',groupid:'8.1%',size:300},
+  {id:'云南',groupid:'8.1%',size:300},
+  {id:'云南',groupid:'8.1%',size:300},
+  {id:'湖南',groupid:'8.1%',size:300},
+  {id:'新疆',groupid:'10.81%',size:400},
+  {id:'云南',groupid:'8.1%',size:300},
+  {id:'云南',groupid:'8.1%',size:300},
+  {id:'云南',groupid:'8.1%',size:300},
+  {id:'云南',groupid:'8.1%',size:300},
+  {id:'湖南',groupid:'8.1%',size:300},
+  {id:'北京',groupid:'24.32%',size:900},
+  {id:'河北',groupid:'16.48%',size:610},
+  {id:'山东',groupid:'12.7%',size:470},
+  {id:'广东',groupid:'10.81%',size:400},
+  {id:'新疆',groupid:'10.81%',size:400},
+  {id:'云南',groupid:'8.1%',size:300},
+  {id:'云南',groupid:'8.1%',size:300},
+  {id:'云南',groupid:'8.1%',size:300},
+  {id:'湖南',groupid:'8.1%',size:300},
+  {id:'新疆',groupid:'10.81%',size:400},
+  {id:'云南',groupid:'8.1%',size:300},
+  {id:'云南',groupid:'8.1%',size:300},
+  {id:'云南',groupid:'8.1%',size:300},
+  {id:'湖南',groupid:'8.1%',size:300},
+  {id:'北京',groupid:'24.32%',size:900},
+  {id:'河北',groupid:'16.48%',size:610},
+  {id:'山东',groupid:'12.7%',size:470},
+  {id:'广东',groupid:'10.81%',size:400},
+  {id:'新疆',groupid:'10.81%',size:400},
+  {id:'云南',groupid:'8.1%',size:300},
+  {id:'云南',groupid:'8.1%',size:300},
+  {id:'云南',groupid:'8.1%',size:300},
+  {id:'湖南',groupid:'8.1%',size:300},
+  {id:'江苏',groupid:'1%',size:60},
+  {id:'浙江',groupid:'1%',size:50},
+  {id:'香港',groupid:'1%',size:10},
+]
+
+myBubbleChart('#bubble-box', datadata);
+
+// 以下是添加一个自己的div
+// setTimeout(()=>{
+//   const d3Data = $('circle')
+//   const d3G = $('g')
+//   const flashCss = 'shadowDiv animated shadowFlash infinite slower'
+//   const noFlashCss = 'shadowDiv'
+//   for(let i=0;i<d3Data.length;i++){
+//     console.log($(d3Data[i]).attr('r'))
+//     $(d3G[i]).attr('class',$(d3Data[i]).attr('r') > 25? '' : '');
+//     shadowDiv = d3.select('#bubble-box')
+//       .append('div')
+//       .attr('class',$(d3Data[i]).attr('r') > 25? flashCss : noFlashCss)
+//       .style('left',($(d3Data[i]).attr('cx')-$(d3Data[i]).attr('r'))+'px')
+//       .style('top', ($(d3Data[i]).attr('cy')-$(d3Data[i]).attr('r'))+'px')
+//       .style('width', $(d3Data[i]).attr('r')*2+'px')
+//       .style('height', $(d3Data[i]).attr('r')*2+'px')
+//   }
+// },4000)
+
+</script>
+</body>

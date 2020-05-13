@@ -70,7 +70,8 @@
             </div>
             <div class="center-bottom">
                 <div class="chart-box">
-                    <div id="chart4" style="width:100%;height:95%;"></div>
+                    <!-- <div id="chart4" style="width:100%;height:95%;"></div> -->
+                    <div id="wordChart" style="width:100%;height:95%;"></div>
                 </div>
 
             </div>
@@ -202,11 +203,11 @@
                 </div>
                 
             </div>
-            <div class="cont-div">
+            <!-- <div class="cont-div">
                 <div class="chart-box pop-charts">
                     <div id="chart4s" style="width:100%;height:95%;"></div>
                 </div>
-            </div>
+            </div> -->
             <div class="cont-div">
                 <h2 class="title" id="barTitles">派件数据</h2>
                 <div class="chart-box pop-chart">
@@ -228,25 +229,6 @@
                     </table>
                 </div>
             </div>
-            <div class="cont-div">
-                <h2 class="title" id="titles"></h2>
-                <button class="btn-class" id="dateBtns"><img src="images/data_icon.png" alt="">日期</button>
-                <div class="data-box  pop-time">
-                    <div class="time-box" id="timeBoxs">
-                        <div class="time-div">
-                            <input class="time-input" type="text" value="" id="startTimes">
-                            <img src="images/selsct_time.png" alt="">
-                        </div>
-                        <div class="time-div end">
-                            <input class="time-input" type="text" value="" id="endTimes">
-                            <img src="images/selsct_time.png" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="pop-data-box" id="totalProfits">
-                    <p></p>
-                </div>
-            </div>
             
         </div>
     </div>
@@ -255,9 +237,11 @@
 <script type="text/javascript" src="js/layer/layer.min.js"></script>
 <script type="text/javascript" src="js/layer/laydate/laydate.js"></script>
 <script src="https://www.jq22.com/jquery/echarts-4.2.1.min.js"></script>
-<script type="text/javascript" src="js/china.js"></script>
+<!-- <script type="text/javascript" src="js/china.js"></script> -->
+<script type="text/javascript" src="js/echarts-wordcloud.min.js"></script>
 <script type="text/javascript" src="js/data/guangdong.js"></script>
 <script type="text/javascript" src="js/base.js"></script>
+<script type="text/javascript" src="js/word.js"></script>
 <script type="text/javascript">
     $('document').ready(function () {
         $("body").css('visibility', 'visible');

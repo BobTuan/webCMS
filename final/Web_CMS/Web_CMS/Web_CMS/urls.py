@@ -16,15 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 #from users.views import ArtcleAPIView
-from users.views import SendCodeView, RegisterView,SendActiveCodeView,ActiveView
 
 urlpatterns = [
     path(r'admin/', admin.site.urls),
     path(r'users/', include('users.urls', namespace='users')),
-    path('sendcode/',SendCodeView.as_view(),name='sendcode'),
-    path('register/', RegisterView.as_view(), name='register'),
-    path('sendactivecode/',SendActiveCodeView.as_view(),name='sendactivecode'),
-    path('active/<str:code>',ActiveView.as_view(),name='active'),
     #path(r"apiarticle/", ArtcleAPIView.as_view(),name="article"),
-
 ]

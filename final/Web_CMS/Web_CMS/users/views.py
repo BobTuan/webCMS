@@ -94,17 +94,17 @@ class SendCodeView(APIView):
 
 class RegisterView(APIView):
         def get(self, request):
-            username = request.GET.get('username')
+            # username = request.GET.get('email')
             pwd = request.GET.get('pwd')
             phone = request.GET.get('phone')
             email = request.GET.get('email')
             code = request.GET.get('code')
-            if username:
-                pass
-            else:
-                msg = '用户名不能为空！'
-                result = {"status": "404", "data": {'msg': msg}}
-                return HttpResponse(json.dumps(result, ensure_ascii=False),content_type="application/json,charset=utf-8")
+            # if username:
+            #     pass
+            # else:
+            #     msg = '用户名不能为空！'
+            #     result = {"status": "404", "data": {'msg': msg}}
+            #     return HttpResponse(json.dumps(result, ensure_ascii=False),content_type="application/json,charset=utf-8")
             if pwd:
                 pass
             else:
@@ -144,8 +144,8 @@ class RegisterView(APIView):
                 #     user.save()
                 msg = '注册成功！'
                 user = UserProfile()
+                # user.username=username
                 user.email = email
-                user.username = username
                 user.password = pwd
                 user.phone = phone
                 user.save()
@@ -163,20 +163,6 @@ class RegisterView(APIView):
 
 
 
-            # class ArtcleAPIView(APIView):  # 使用apikey和文章名查询文章
-#     def get(self, request, format=None):
-#         APIkey = self.request.query_params.get("apikey", 0)
-#         developer = UserProfile1.objects.filter(APIkey=APIkey).first()
-#         if developer:
-#             title = self.request.query_params.get("title", 0)
-#             articles = Article.objects.filter(a_title=title)
-#             articles_serializer = ArticleModelSerializer(articles, many=True)
-#             return Response(articles_serializer.data)
-#         else:
-#             return Response("没有这篇文章")
-
-
-
 
 class SendActiveCodeView(APIView):
         # 发送激活链接类
@@ -184,11 +170,11 @@ class SendActiveCodeView(APIView):
                 email=request.GET.get('email')
                 if email:
                     email_send.send_register_email(email)
-                    msg = '激活链接已发送都您的邮箱，请前往邮箱完成激活！'
+                    msg = '发送成功！'
                     result = {"status": "200", "data": {'msg': msg}}
                     return HttpResponse(json.dumps(result, ensure_ascii=False),content_type="application/json,charset=utf-8")
                 else:
-                    msg = '未收到邮箱！'
+                    msg = '邮箱未注册！'
                     result = {"status": "404", "data": {'msg': msg}}
                     return HttpResponse(json.dumps(result, ensure_ascii=False),content_type="application/json,charset=utf-8")
 
@@ -223,9 +209,13 @@ class GetUserInfoView(APIView):  # 登录API
 
         try:
             # 从数据库获取数据
-
-            user1 = UserProfile.objects.get(u_email=email)
-
+            print(email)
+            print(UserProfile.objects.filter(u_email=email))
+            user=UserProfile()
+            # user1 = user.objects.get(u_email=email)
+            user1=user.objects.filter(u_email=email)
+            print(user1.u_password)
+            # print(user1.u_email)
             if user1.u_password == password:
                 d = {
                     'status': 0,
@@ -243,23 +233,7 @@ class GetUserInfoView(APIView):  # 登录API
                 'status': 1,
                 'message': '该邮箱未注册'
             }
-            print('sss')
-        return JsonResponse(d)
-
-
-class register(APIView):
-    def get(self, request):
-        email = request.GET.get('email')
-        username = request.GET.get('username')
-        password = request.GET.get('password')
-        user = UserProfile()
-        user.u_email = email
-        user.u_username = username
-        user.u_password = password
-        user.save()
-        d = {
-            'message': '注册成功'
-        }
+            print('报错')
         return JsonResponse(d)
 
 

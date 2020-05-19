@@ -7,16 +7,26 @@
 <script type="text/javascript" src="./js/jquery.js"></script>
 <script type="text/javascript" src="./js/login.js"></script>
 </head>
+<style>
+	input{outline:none;}
+</style>
 <body>
 <div class="wrapper">
 	<div class="container">
 		<h1>web CMS</h1>
-		<form class="form">
-			<input type="text" placeholder="Email">
+		<form class="form" novalidate>
+			<input id="id" type="text" placeholder="Email" autocomplete="off"
+			>
 			<div id="noId"><a href="#" class="link">没有账号?</a></div>
-			<input type="password" placeholder="Password">
+			<input id="pwd" type="password" placeholder="Password" autocomplete="off"
+			>
 			<div id="noPwd"><a href="#" class="link">忘记密码?</a></div>
-            <button type="button" id="confirm">Login</button>
+			<input id="phone" type="text" placeholder="phone" autocomplete="off"
+			>
+			<div id="sendCode"><a href="#" class="link">发送验证码</a></div>
+			<input id="code" type="number" placeholder="code"  autocomplete="off"
+			>
+			<button type="button" id="confirm">Login</button>
 		</form>
 	</div>	
 </div>

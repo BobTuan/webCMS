@@ -25,7 +25,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="d1f21b7c-8147-42d9-9588-01fe0b7f0dbe">
-        <schema name="main" object-types="column, constraint, dataset trigger, view, table, index" />
+        <schema name="main" object-types="constraint, index, table, column, dataset trigger, view" />
       </connection>
     </loaded-nodes>
   </component>
@@ -51,6 +51,8 @@
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="d1f21b7c-8147-42d9-9588-01fe0b7f0dbe" dataset="main.CMS_user1" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="d1f21b7c-8147-42d9-9588-01fe0b7f0dbe" dataset="main.users_code" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="d1f21b7c-8147-42d9-9588-01fe0b7f0dbe" dataset="main.users_article" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="d1f21b7c-8147-42d9-9588-01fe0b7f0dbe" dataset="main.users_feed" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="5fcac5d0-337f-4cb3-aa71-d3c972ce3bab" dataset="main.CMS_user" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="5fcac5d0-337f-4cb3-aa71-d3c972ce3bab" dataset="main.users_emailverifyrecord" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="5fcac5d0-337f-4cb3-aa71-d3c972ce3bab" dataset="main.CMS_user1" active-filter-id="EMPTY_FILTER" />

@@ -7,7 +7,6 @@ function getParams(key) {
     return null;
 };
 var user    = 1;
-var curID   = 0
 var noteIDs = [0];
 function getIDs(ids){
     noteIDs = ids;
@@ -17,17 +16,22 @@ $(document).ready(function(){
     console.log("curID:"+getParams("curID"));
     getNoteList(noteIDs);
 });
+function cleanNote(){
+    $("#noteList").empty();
+}
 function getNoteList(noteIDs){
     console.log(noteIDs);
     $.ajax({
+        type: 'get',
         url : "http://127.0.0.1:8000/notes/getNotesList",
         data: {
-            "userID": user,
-            "curID" : curID,
+            "userID" : user,
+            "noteIDs": noteIDs,
             },
-        async   : true,            // 是否异步
-        dataType: "JSON",
-        success : function(data){
+        traditional: true,
+        async      : true,            // 是否异步
+        dataType   : "JSON",
+        success    : function(data){
             noteList = data['data']['data']
             console.log(noteList);
             // str = '<a href="#" class="list-group-item list-group-item-action flex-column align-items-start ">'+

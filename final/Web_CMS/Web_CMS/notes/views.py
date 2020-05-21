@@ -21,11 +21,21 @@ class getTree(APIView):
 class getNotesList(APIView):
 	def get(self,request):
 		userID = request.GET.get('userID')
-		curID=request.GET.get("curID")
-		print(userID)
-		print(curID)
-		if(curID=="0"):
+		# noteIDs=request.GET.get("noteIDs")
+		noteIDs=request.GET.getlist("noteIDs")
+		ids = list(map(int, noteIDs))
+		if(ids[0]==0):
 			mList = Note.objects.filter(N_owner_id=userID)
+			_data = [
+				{
+					'id': x.id,
+					'title': x.N_title,
+					'createTime': x.N_create_time,
+				} for x in mList
+			]
+			result = {"status": "200", "data": {'data': _data}}
+		else:
+			mList = Note.objects.filter(N_owner_id=userID,id__in=ids)
 			_data = [
 				{
 					'id': x.id,
@@ -34,8 +44,6 @@ class getNotesList(APIView):
 				} for x in mList
 			]
 			result = {"status": "200", "data": {'data': _data}}
-		else:
-			result = {"status": "200", "data": {'data': "0"}}
 		return HttpResponse(json.dumps(result, ensure_ascii=False), content_type="application/json,charset=utf-8")
 class getNoteContent(APIView):
 	def get(self,request):
@@ -51,21 +59,21 @@ class getNoteContent(APIView):
 		]
 		result = {"status": "200", "data": {'data': _data}}
 		return HttpResponse(json.dumps(result, ensure_ascii=False), content_type="application/json,charset=utf-8")
-class createNode(APIView):
+class addNote(APIView):
 	def post(self,request):
-		data = json.loads(request.body.decode('utf-8'))
-
-		postdata = {
-			"name": data['name'],
-			"parent": Category.objects.get(id=data['parent'])
-		}
-
-		try:
-			Category.objects.create(**postdata)
-
-			return JsonResponse({'state': 1, 'message': '创建成功!'})
-		except Exception as e:
-			return JsonResponse({'state': 0, 'message': 'Create Error: ' + str(e)})
-class updateNode(APIView):
+		return 1
+class renameNote(APIView):
+	def post(self,request):
+		userID=request.POST.get('userID')
+		noteID=request.POST.get('noteID')
+		newTitle=request.POST.get('newTitle')
+		print(noteID)
+		print(newTitle)
+		a = Note.objects.get(id=noteID)  # 查询一条你要更新的数据
+		a.N_title = newTitle  # 赋值给你要更新的字段
+		a.save()
+		result = {"status": "200", "data": {'data': '0'}}
+		return HttpResponse(json.dumps(result, ensure_ascii=False), content_type="application/json,charset=utf-8")
+class deleteNote(APIView):
 	def post(self,request):
 		return 1

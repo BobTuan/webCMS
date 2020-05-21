@@ -62,8 +62,9 @@
 /* 初始化下拉菜单 */
 #rMenu {position:absolute; visibility:hidden; text-align: left;padding: 2px;}
 .list-group-item{
-    border          : none;
-    background-color: gray;
+    border: none;
+    border: solid 1px gray;
+    /* background-color: gray; */
 }
 .m{ width: 100%;  }
 #user{

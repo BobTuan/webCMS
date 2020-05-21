@@ -7,7 +7,9 @@ var setting = {
     callback:{
         //右键点击菜单
         onRightClick: OnRightClick,
-        onClick     : zTreeOnClick
+        onClick     : zTreeOnClick,
+        beforeRename: beforeRename,   //编辑结束时触发，用来验证输入的数据是否符合要求
+        onRename    : onRename
     },
     data: {
         simpleData: {
@@ -20,12 +22,9 @@ var setting = {
             parent: true
         }
     },
-    // edit: {
-    //     enable: true
-    // }
 };
 var zTree, rMenu;
-var user;
+var user = getParams("user");
 function getParams(key) {
     var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
     var r   = window.location.search.substr(1).match(reg);
@@ -36,7 +35,7 @@ function getParams(key) {
 };
 
 $(document).ready(function(){
-    console.log("user:"+getParams("user"));
+    console.log("user:"+user);
     $.ajax({
         url : "http://127.0.0.1:8000/notes/getTree",
         data: {
@@ -72,14 +71,13 @@ function zTreeOnClick(e, treeId, treeNode) {
     // console.log(treeNode.children);
     var ids = [];
         ids = getChildren(ids, treeNode);  //TreeNode是选中节点，ids是子节点id数组，格式：123,223,4,55
-    console.log(ids)
+    // console.log(ids)
+    window.parent.cleanNote();
     window.parent.closePageslide();
     window.parent.getNoteList(ids);
-    // window.location.href = 'manage.html';
-    // $.pageslide.close();
     var title = $("#editTitle",parent.document)
-    console.log(Object.keys(title))
-    console.log(title['0'])
+    // console.log(Object.keys(title))
+    // console.log(title['0'])
     // alert($("#editTitle").display);
     // $.ajax({
     //     url    : "data/content.json",
@@ -127,11 +125,11 @@ function showRMenu(type, x, y) {
     if (type=="root") {
         $("#m_add").hide();
         $("#m_del").hide();
-        $("#m_reset").hide();
+        $("#m_rename").hide();
     } else {
         $("#m_add").show();
         $("#m_del").show();
-        $("#m_reset").show();
+        $("#m_rename").show();
     }
 
     y += document.body.scrollTop;
@@ -153,6 +151,7 @@ var addCount = 1;
 function addTreeNode() {
     //先隐藏掉下拉菜单，然后新建节点，添加
     hideRMenu();
+    // console.log(zTree.getSelectedNodes());
     var newNode = { name:"newNode " + (addCount++)};
     if (zTree.getSelectedNodes()[0]) {
         newNode.checked = zTree.getSelectedNodes()[0].checked;
@@ -176,9 +175,53 @@ function removeTreeNode() {
         }
     }
 }
-function resetTree() {
-    //先隐藏带下拉菜单，然后恢复默认的树
+function renameTreeNode() {
+    //隐藏掉下拉菜单，然后找到节点，如果子元素比较多，提醒，然后确认删除。否则直接删除。
     hideRMenu();
-    $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+    nodes    = zTree.getSelectedNodes(),
+    treeNode = nodes[0];
+    console.log(treeNode);
+    if (nodes.length == 0) {
+        alert("请先选择一个节点");
+        return;
+    }
+    id = treeNode['id'];
+    zTree.editName(treeNode);
 }
-
+function beforeRename(treeId, treeNode, newName, isCancel) {
+    console.log(treeNode.name);
+    if (newName.length == 0) {
+        setTimeout(function() {
+            var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+            zTree.cancelEditName();
+            alert("节点名称不能为空.");
+        }, 0);
+        return false;
+    }
+    return true;
+}
+function onRename(e, treeId, treeNode, isCancel) {
+    $.ajax({
+        type: "post",                                     // 请求类型（get/post）
+        url : "http://127.0.0.1:8000/notes/renameNote",
+        data: {
+        "userID"  : user,
+        "noteID"  : treeNode.id,
+        "newTitle": treeNode.name,
+        },
+        async   : true,             // 是否异步
+        dataType: "json",           // 设置数据类型
+        success : function (data){
+            console.log('success');
+            // var info = data['data']['msg'];
+            // console.log(info)
+        },
+        error: function (errorMsg){
+            // 请求失败
+            alert("请求失败");
+        }
+    });
+    console.log(user)
+    console.log(treeNode.id)
+   console.log(treeNode.name);
+}

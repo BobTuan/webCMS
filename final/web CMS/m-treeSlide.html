@@ -7,20 +7,19 @@
 <script type="text/javascript" src="js/jquery.ztree.exedit.js"></script>
 <link rel="stylesheet" href="css/bootstrap-3-3-4.css" type="text/css">
 <link rel="stylesheet" href="css/manage.css" type="text/css">
-<!-- <script src="js/tree.js"></script> -->
 <script src="pageslide/jquery.pageslide.js"></script>
 <script src="js/treeSlide.js"></script>
-
-<!-- <script src="pageslide/jquery-1.7.1.min.js"></script>
-<script type="text/javascript">
-    var $jjq = $; //jquery.min.js的$重命名为j$
-    jQuery.noConflict();
-</script> -->
+<style>
+    .list-group-item {
+        font-size: 13px;
+    }
+</style>
 
 <h2>树状</h2>
 <HR SIZE=10>
 <ul id="treeDemo" class="ztree"></ul>
 <ul class="list-group" id="rMenu">
+    <li class="list-group-item " id="m_rename" onclick="renameTreeNode();">rename</li>
     <li class="list-group-item " id="m_add" onclick="addTreeNode();">add</li>
     <li class="list-group-item " id="m_del" onclick="removeTreeNode();">delete</li>
 </ul>

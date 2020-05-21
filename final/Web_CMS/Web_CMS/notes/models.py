@@ -28,7 +28,7 @@ class Note(models.Model):
     N_create_time = models.DateTimeField(default=datetime.now, null=True,verbose_name='创建时间')
     N_update_time = models.DateTimeField(default=datetime.now, null=True,verbose_name='更新时间')
     N_status = models.IntegerField(default=1, null=True,verbose_name='笔记状态')
-    reference = models.ManyToManyField(Article, blank=True, null=True, verbose_name='相关文章')
+    # reference = models.ManyToManyField(Article, blank=True, null=True, verbose_name='相关文章')
 
     class Meta:
         verbose_name = '笔记信息'

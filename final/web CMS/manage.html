@@ -15,6 +15,7 @@
     <link href="dist/summernote.css" rel="stylesheet" />
     <!-- 第二个jquery -->
     <script src="js/jquery1-10-2.js"></script>
+    <script src="js/manage.js"></script>
     <script type="text/javascript">
         var $jq = $; //jquery.min.js的$重命名为j$
         jQuery.noConflict();
@@ -29,7 +30,14 @@
         .list-group-item {
             font-size: 13px;
         }
+        .list-group{
+            width: 100%;
+            height: 89%;
+            /* border: solid 2px black; */
+            overflow-y: auto;
+        }
     </style>
+
 </head>
 
 <body>
@@ -39,23 +47,23 @@
         <div id="tree">
             <div id="treeTitle">
                 <input type="text" id="search" placeholder="搜索" />
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start ">
-                            <h5 class="mb-1">List group </h5>
-                            <small>3 days ago</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start ">
+            </div>
+            <div id="noteList" class="list-group">
+                <!-- <a href="#" class="list-group-item list-group-item-action flex-column align-items-start ">
                         <h5 class="mb-1">List group </h5>
                         <small>3 days ago</small>
                 </a>
-                </div>
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start ">
+                    <h5 class="mb-1">List group </h5>
+                    <small>3 days ago</small>
+            </a> -->
             </div>
         </div>
         <div id="dockContainer">
             <ul id="jqDock">
                 <li><a class="dockItem" href="data.html"><img src="images/data/main.png" alt="Home"
                             title="main&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" /></a></li>
-                <li><a class="dockItem" href="m-treeSlide.html" id="treeSlide"><img src="images/rss/notebook.png"
+                <li><a class="dockItem"  id="treeSlide"><img src="images/rss/notebook.png"
                             alt="Contact" title="add&nbsp;&nbsp;&nbsp;&nbsp;" /></a></li>
                 <li><a class="dockItem" id="tagSlide" href="m-tagSlide.html"><img src="images/rss/tags.png" alt="portfolio"
                             title="question&nbsp;&nbsp;&nbsp;&nbsp;" /></a></li>
@@ -106,7 +114,7 @@
 <script>
     $jq(function () {
         $jq('#keywordEdit').summernote({
-            height: 500,
+            height: 568,
             tabsize: 2,
             // airMode: true,
             lang: 'zh-CN',
@@ -127,7 +135,7 @@
         });
         $('#keywordEdit').css('font-size','36px');
         $jq('#ideaEdit').summernote({
-            height: 200,
+            height: 112,
             tabsize: 2,
             lang: 'zh-CN',
             placeholder:"请输入想法",
@@ -139,12 +147,17 @@
 		              ]	
         });
         $jq('#noteEdit').summernote({
-            height: 340,
+            height: 430,
             tabsize: 2,
             lang: 'zh-CN',
             placeholder:"请输入笔记",
         });
     });
+</script>
+<script>
+    var treeUrl="m-treeSlide.html"
+    var user=1
+    $('#treeSlide').attr('href',treeUrl+"?user="+user); 
 </script>
 <style>
     .note-editor .note-editable {

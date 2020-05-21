@@ -3,14 +3,6 @@ from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
 from .models import UserProfile
-    #,Article
-
-
-# class ArticleModelSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Article
-#         fields = "__all__"  # 序列化整个表的所有字段
-
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

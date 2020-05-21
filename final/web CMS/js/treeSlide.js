@@ -25,13 +25,28 @@ var setting = {
     // }
 };
 var zTree, rMenu;
+var user;
+function getParams(key) {
+    var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+    var r   = window.location.search.substr(1).match(reg);
+    if (r != null) {
+        return unescape(r[2]);
+    }
+    return null;
+};
+
 $(document).ready(function(){
+    console.log("user:"+getParams("user"));
     $.ajax({
-        url     : "data/tree.json",
+        url : "http://127.0.0.1:8000/notes/getTree",
+        data: {
+            "user": user,
+            },
+        async   : true,            // 是否异步
         dataType: "JSON",
         success : function(data){
-            var zNodes = data;
-            // alert(data);
+            console.log(data['data'])
+            var zNodes = data['data']['data'];
             $.fn.zTree.init($("#treeDemo"), setting, zNodes);
             zTree = $.fn.zTree.getZTreeObj("treeDemo");
             rMenu = $("#rMenu");
@@ -41,22 +56,6 @@ $(document).ready(function(){
         }
     })
 });
-// $("#treeSlide").click(function(){
-//     $.ajax({
-//         url     : "data/tree.json",
-//         dataType: "JSON",
-//         success : function(data){
-//             var zNodes = data;
-//             // alert(data);
-//             $.fn.zTree.init($("#treeDemo"), setting, zNodes);
-//             zTree = $.fn.zTree.getZTreeObj("treeDemo");
-//             rMenu = $("#rMenu");
-//         },
-//         error:function(data){
-//             console.log(JSON.stringify(data));
-//         }
-//     })
-// });
 var newCount = 1;
 function OnRightClick(event, treeId, treeNode) {
     // alert(1);
@@ -69,33 +68,60 @@ function OnRightClick(event, treeId, treeNode) {
     }
 }
 function zTreeOnClick(e, treeId, treeNode) {
-    // alert(treeNode.id+","+","+treeNode.name); 
-    alert($("#editTitle").display);
-    $.ajax({
-        url    : "data/content.json",
-        type   : "get",
-        success: function(data) {
-            var title = treeNode.name;
-            var abs;
-            var content;
-            for(var i=0;i<data.length;i++){
-                if(data[i]['id']==treeNode.id){
-                    abs     = treeNode.abs;
-                    content = data[i].content;
-                }
-            }
+    // console.log(treeNode.id+","+","+treeNode.name); 
+    // console.log(treeNode.children);
+    var ids = [];
+        ids = getChildren(ids, treeNode);  //TreeNode是选中节点，ids是子节点id数组，格式：123,223,4,55
+    console.log(ids)
+    window.parent.closePageslide();
+    window.parent.getNoteList(ids);
+    // window.location.href = 'manage.html';
+    // $.pageslide.close();
+    var title = $("#editTitle",parent.document)
+    console.log(Object.keys(title))
+    console.log(title['0'])
+    // alert($("#editTitle").display);
+    // $.ajax({
+    //     url    : "data/content.json",
+    //     type   : "post",
+    //     success: function(data) {
+    //         var title = treeNode.name;
+    //         var abs;
+    //         var content;
+            // for(var i=0;i<data.length;i++){
+            //     if(data[i]['id']==treeNode.id){
+            //         abs     = treeNode.abs;
+            //         content = data[i].content;
+            //     }
+            // }
             // alert(title+","+content);
-            $jq("#editTitle input").val(title);
-            $jq(".summernote").summernote('code', content);
-            var appendStr  = '';
-                appendStr += '<span class="glyphicon glyphicon-tags" style="margin:0 5px"></span>';
-                appendStr += '<input type="text" id="tagValue" >';
-            $   ("#editTags").html(appendStr);
-            tag.initView();
-            tagTake.setInputValue("tagValue",treeNode.name);
-        }
-    });
+            // $jq("#editTitle input").val(title);
+            // $jq(".summernote").summernote('code', content);
+            // var appendStr  = '';
+            //     appendStr += '<span class="glyphicon glyphicon-tags" style="margin:0 5px"></span>';
+            //     appendStr += '<input type="text" id="tagValue" >';
+            // $   ("#editTags").html(appendStr);
+            // tag.initView();
+            // tagTake.setInputValue("tagValue",treeNode.name);
+    //     }
+    // });
 };
+// 返回值是否包含选中节点id，根据情况而定
+ function getChildren(ids, treeNode) {
+    ids.push(treeNode.id);//将当前节点压入栈中
+    // 如果当前节点存在子节点
+    if (treeNode.isParent) {
+        for (var obj in treeNode.children) {
+            // console.log(treeNode.children[obj])
+            if(treeNode.children[obj].isParent){
+                ids = getChildren(ids,treeNode.children[obj])
+            }else{
+                ids.push(treeNode.children[obj].id);
+            }
+       }
+    }
+   return ids;
+}
 function showRMenu(type, x, y) {
     $("#rMenu ul").show();
     if (type=="root") {

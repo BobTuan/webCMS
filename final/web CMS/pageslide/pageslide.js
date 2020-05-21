@@ -12,3 +12,7 @@ $jjq("#rssContainer").click(function(e){
             $jjq.pageslide.close();
     };
 })
+function closePageslide(){
+    console.log("关闭");
+    $jjq.pageslide.close();
+}

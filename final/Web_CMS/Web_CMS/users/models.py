@@ -24,7 +24,7 @@ class UserProfile(AbstractUser):
     # u_score = models.IntegerField(default=100, verbose_name="点数")
 
     class Meta:
-        db_table = 'CMS_user1'
+        db_table = 'CMS_user'
         verbose_name = '用户'
         verbose_name_plural = verbose_name
 

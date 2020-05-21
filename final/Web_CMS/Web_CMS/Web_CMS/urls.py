@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-#from users.views import ArtcleAPIView
 
 urlpatterns = [
     path(r'admin/', admin.site.urls),
     path(r'users/', include('users.urls', namespace='users')),
+    path(r'notes/', include('notes.urls', namespace='notes')),
     #path(r"apiarticle/", ArtcleAPIView.as_view(),name="article"),
 ]

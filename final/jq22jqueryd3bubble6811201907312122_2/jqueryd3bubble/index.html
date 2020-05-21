@@ -1,22 +1,15 @@
 <!DOCTYPE html>
 <head>
   <meta charset="utf-8">
-  <title>根据百分比显示大小的气泡图带动效</title>
   <script src="https://www.jq22.com/jquery/d3.js"></script>
   <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 
   <style>
-    body { 
-      font-family: "avenir next", Arial, sans-serif;
-      font-size: 12px;
-      margin: 0;
-      background: #0f1231;
-    }
     #bubble-box{
       width: 400px;
-      height: 400px;
+      height: 600px;
       position: relative;
-      border: 1px solid #DD5246;
+      border: 1px solid black;
       margin-left: 100px;
       margin-top: 100px;
     }
@@ -38,9 +31,6 @@
       }
     }
     
-.bubble1{
-  animation: idle 4s linear infinite;
-}
   </style>
 </head>
 
@@ -49,7 +39,7 @@
 <script>
 function bubbleChart() {
   const width = 400;
-  const height = 400;
+  const height = 600;
   const centre = { x: width/2, y: height/2 };
   //该参数表示气泡出来时候的引力大小，也就是控制快慢的，可以根据宽高具体调整
   const forceStrength = 0.02;
@@ -76,12 +66,13 @@ function bubbleChart() {
   // each node will store data and visualisation values to draw a bubble
   // rawData is expected to be an array of data objects, read in d3.csv
   // function returns the new node array, with a node for each element in the rawData input
+  // 根据原始数据创建漂浮
   function createNodes(rawData) {
     const maxSize = d3.max(rawData, d => +d.size);
     const radiusScale = d3.scaleSqrt()
-      .domain([0, maxSize])
+      .domain([5, maxSize])
       //此参数控制气泡的大小，表示气泡的半径范围
-      .range([0, 50])
+      .range([5, 50])
 
     const myNodes = rawData.map(d => ({
       ...d,
@@ -92,7 +83,26 @@ function bubbleChart() {
     }))
     return myNodes;
   }
+  function getData() {
+        //这里我使用了jquery,dom操作感觉比较方便
+        // alert($(this)[0]);
+        // alert(Object.keys($(this)))
+        alert($(this)['context']['__data__']['id'])
+        // alert(Object.keys($(this)['context']['__data__']))
 
+    }
+  function onMouseMove() {
+
+           // this would work, but not when its called in a function
+          d3.select(this)
+          .attr('stroke', d => '#FF1493')
+
+  }
+  function onMouseOut(){
+    d3.select(this)
+          .attr('stroke', d => '#3CB371')
+  }
+  // selector为容器，后面为原始数据
   let chart = function chart(selector, rawData) {
     nodes = createNodes(rawData);
     svg = d3.select(selector)
@@ -103,6 +113,10 @@ function bubbleChart() {
       .data(nodes, d => d.id)
       .enter()
       .append('g')
+      .on("click", getData)
+      .on('mousemove', onMouseMove)
+      .on('mouseout', onMouseOut)
+      
 
     //Container for the gradients
     var defs = svg.append("defs");
@@ -126,10 +140,10 @@ function bubbleChart() {
       .classed('bubble', true)
       .attr('r', d => d.radius)
       .attr('fill', d => 'transparent')
-      .attr('stroke', d => '#DD5246')
+      .attr('stroke', d => '#3CB371')
     labels = elements
       .append('text')
-      .style('fill', '#DD5246')
+      .style('fill', '#3CB371')
     labels1 = labels  
       .append('tspan')
       .attr('dy', '-0.1em')
@@ -188,31 +202,12 @@ const datadata=[
   {id:'云南',groupid:'8.1%',size:300},
   {id:'云南',groupid:'8.1%',size:300},
   {id:'湖南',groupid:'8.1%',size:300},
-  {id:'江苏',groupid:'1%',size:60},
-  {id:'浙江',groupid:'1%',size:50},
-  {id:'香港',groupid:'1%',size:10},
+  {id:'江苏',groupid:'1%',size:120},
+  {id:'浙江',groupid:'1%',size:120},
+  {id:'香港',groupid:'1%',size:130},
 ]
-
 myBubbleChart('#bubble-box', datadata);
 
-// 以下是添加一个自己的div
-// setTimeout(()=>{
-//   const d3Data = $('circle')
-//   const d3G = $('g')
-//   const flashCss = 'shadowDiv animated shadowFlash infinite slower'
-//   const noFlashCss = 'shadowDiv'
-//   for(let i=0;i<d3Data.length;i++){
-//     console.log($(d3Data[i]).attr('r'))
-//     $(d3G[i]).attr('class',$(d3Data[i]).attr('r') > 25? '' : '');
-//     shadowDiv = d3.select('#bubble-box')
-//       .append('div')
-//       .attr('class',$(d3Data[i]).attr('r') > 25? flashCss : noFlashCss)
-//       .style('left',($(d3Data[i]).attr('cx')-$(d3Data[i]).attr('r'))+'px')
-//       .style('top', ($(d3Data[i]).attr('cy')-$(d3Data[i]).attr('r'))+'px')
-//       .style('width', $(d3Data[i]).attr('r')*2+'px')
-//       .style('height', $(d3Data[i]).attr('r')*2+'px')
-//   }
-// },4000)
 
 </script>
 </body>

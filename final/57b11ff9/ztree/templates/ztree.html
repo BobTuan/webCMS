@@ -1,0 +1,60 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+	<TITLE> ZTREE DEMO - checkbox</TITLE>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="../static/css/demo.css" type="text/css">
+	<link rel="stylesheet" href="../static/css/zTreeStyle/zTreeStyle.css" type="text/css">
+	<script type="text/javascript" src="../static/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../static/js/jquery.ztree.core.js"></script>
+	<script type="text/javascript" src="../static/js/jquery.ztree.excheck.js"></script>
+	<!--
+	<script type="text/javascript" src="../../../js/jquery.ztree.exedit.js"></script>
+	-->
+    	<SCRIPT type="text/javascript">
+		<!--
+		var setting = {
+			check: {
+				enable: true
+			},
+			data: {
+				simpleData: {
+					enable: true,
+                    pIdKey: "parent_id"
+				}
+			}
+		};
+
+        function getTree() {
+                     var tree = {};
+                     $.ajax({
+                         url: "/../json_test2",
+                         type: "get",
+                         contentType: "application/json",
+                         timeout: 30000, //超时时间：30秒
+                         async: false,//false-同步（当这个ajax执行完后才会继续执行其他代码）；异步-与其他代码互不影响，一起运行。
+                         dataType: "json",
+                         success: function (data) {
+                             tree = JSON.parse(data);
+                             }, error: function (data) {
+                             alert("lost")
+                         }
+                     });
+                     return tree;
+                }
+        zNodes = getTree();
+
+		$(document).ready(function(){
+			$.fn.zTree.init($("#treeDemo"), setting, zNodes);
+		});
+		//-->
+	</SCRIPT>
+</HEAD>
+
+<BODY>
+<div>
+		<ul id="treeDemo" class="ztree"></ul>
+</div>
+</BODY>
+</HTML>

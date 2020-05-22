@@ -152,7 +152,7 @@ function addTreeNode() {
     //先隐藏掉下拉菜单，然后新建节点，添加
     hideRMenu();
     // console.log(zTree.getSelectedNodes());
-    var newNode = { name:"newNode " + (addCount++)};
+    var newNode = { name:"newNote " + (addCount++)};
     if (zTree.getSelectedNodes()[0]) {
         newNode.checked = zTree.getSelectedNodes()[0].checked;
         zTree.addNodes(zTree.getSelectedNodes()[0], newNode);

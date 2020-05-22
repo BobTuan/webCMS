@@ -151,27 +151,67 @@ var addCount = 1;
 function addTreeNode() {
     //先隐藏掉下拉菜单，然后新建节点，添加
     hideRMenu();
-    // console.log(zTree.getSelectedNodes());
-    var newNode = { name:"newNote " + (addCount++)};
+    var name    = new Date().getTime();  //利用时间戳生成节点名称，保证节点名称唯一
+    var newNode = {
+        name: name
+    };
     if (zTree.getSelectedNodes()[0]) {
         newNode.checked = zTree.getSelectedNodes()[0].checked;
+        newNode.pid     = zTree.getSelectedNodes()[0].id;
         zTree.addNodes(zTree.getSelectedNodes()[0], newNode);
     } else {
         zTree.addNodes(null, newNode);
     }
+    $.ajax({
+        type: "post",                                  // 请求类型（get/post）
+        url : "http://127.0.0.1:8000/notes/addNote",
+        data: {
+        "userID": user,
+        "note"  : JSON.stringify(newNode),
+        },
+        async   : true,             // 是否异步
+        dataType: "json",           // 设置数据类型
+        success : function (data){
+            console.log('success');
+        },
+        error: function (errorMsg){
+            // 请求失败
+            alert("请求失败");
+        }
+    });
 }
 function removeTreeNode() {
     //隐藏掉下拉菜单，然后找到节点，如果子元素比较多，提醒，然后确认删除。否则直接删除。
     hideRMenu();
     var nodes = zTree.getSelectedNodes();
-    if (nodes && nodes.length>0) {
+    var ids   = [];
+        ids   = getChildren(ids, nodes['0']);
+    // console.log(nodes)
+    // console.log(ids)
+    if (nodes && nodes.length > 0) {
         if (nodes[0].children && nodes[0].children.length > 0) {
-            var msg = "If you delete this node will be deleted along with sub-nodes. \n\nPlease confirm!";
-            if (confirm(msg)==true){
-                zTree.removeNode(nodes[0]);
+            if (confirm("该操作会将关联数据同步删除，是否确认删除？") == true){
+                $.ajax({
+                    type: "Post",
+                    url : "http://127.0.0.1:8000/notes/deleteNote",
+                    data: {
+                        "userID": user,
+                        "noteID": ids
+                    },
+                    traditional: true,
+                    async      : true,              // 是否异步
+                    dataType   : "JSON",
+                    success    : function (data) {
+                        console.log(data)
+                        if (data['status'] == "200") {
+                            zTree.removeNode(nodes[0]);
+                        }
+                        else {
+                            alert("删除失败。");
+                        }
+                    }
+                });
             }
-        } else {
-            zTree.removeNode(nodes[0]);
         }
     }
 }

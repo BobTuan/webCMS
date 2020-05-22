@@ -4,7 +4,15 @@ from notes.models import Note
 # Create your views here.
 from django.http import HttpResponse,JsonResponse
 import json
-
+from datetime import date, datetime
+class ComplexEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, datetime):
+            return obj.strftime('%Y-%m-%d %H:%M:%S')
+        elif isinstance(obj, date):
+            return obj.strftime('%Y-%m-%d')
+        else:
+            return json.JSONEncoder.default(self, obj)
 class getTree(APIView):
 	def get(self, request):
 		user = request.GET.get('user')
@@ -17,7 +25,7 @@ class getTree(APIView):
 			} for x in mList
 		]
 		result = {"status": "200", "data": {'data':_data}}
-		return HttpResponse(json.dumps(result, ensure_ascii=False), content_type="application/json,charset=utf-8")
+		return HttpResponse(json.dumps(result, ensure_ascii=False,cls=ComplexEncoder), content_type="application/json,charset=utf-8")
 class getNotesList(APIView):
 	def get(self,request):
 		userID = request.GET.get('userID')
@@ -40,11 +48,11 @@ class getNotesList(APIView):
 				{
 					'id': x.id,
 					'title':x.N_title,
-					'createTime': x.N_create_time,
+					'createTime': str(x.N_create_time),
 				} for x in mList
 			]
 			result = {"status": "200", "data": {'data': _data}}
-		return HttpResponse(json.dumps(result, ensure_ascii=False), content_type="application/json,charset=utf-8")
+		return HttpResponse(json.dumps(result, cls=ComplexEncoder), content_type="application/json,charset=utf-8")
 class getNoteContent(APIView):
 	def get(self,request):
 		userID=request.GET.get('userID')
@@ -61,7 +69,18 @@ class getNoteContent(APIView):
 		return HttpResponse(json.dumps(result, ensure_ascii=False), content_type="application/json,charset=utf-8")
 class addNote(APIView):
 	def post(self,request):
-		return 1
+		userID = request.POST.get('userID')
+		node = request.POST.get("note")
+		node=json.loads(node)
+		title=node['name']
+		pid=node['pid']
+		Note.objects.create(  # 数据库插入语句
+			N_title=title,  # 设定字段与传入值进行对应（将会什么内容将会保存在什么字段下。）。
+			N_parent_id_id=pid,
+			N_owner_id=1,
+		)
+		result = {"status": "200", "data": {'data': '0'}}
+		return HttpResponse(json.dumps(result, ensure_ascii=False), content_type="application/json,charset=utf-8")
 class renameNote(APIView):
 	def post(self,request):
 		userID=request.POST.get('userID')
@@ -76,4 +95,9 @@ class renameNote(APIView):
 		return HttpResponse(json.dumps(result, ensure_ascii=False), content_type="application/json,charset=utf-8")
 class deleteNote(APIView):
 	def post(self,request):
-		return 1
+		userID = request.POST.get('userID')
+		noteID = request.POST.getlist('noteID')
+		ids = list(map(int, noteID))
+		Note.objects.filter(N_owner_id=userID,id__in=ids).delete()
+		result = {"status": "200", "data": {'data': '0'}}
+		return HttpResponse(json.dumps(result, ensure_ascii=False), content_type="application/json,charset=utf-8")

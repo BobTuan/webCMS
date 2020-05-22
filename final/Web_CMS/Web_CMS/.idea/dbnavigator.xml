@@ -43,7 +43,6 @@
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files>
       <object connection-id="d1f21b7c-8147-42d9-9588-01fe0b7f0dbe" object-ref="schemas/main/tables/notes_note" />
-      <object connection-id="d1f21b7c-8147-42d9-9588-01fe0b7f0dbe" object-ref="schemas/main/tables/CMS_user" />
     </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">

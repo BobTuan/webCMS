@@ -11,7 +11,7 @@ urlpatterns = [
     path(r'getTree/',getTree.as_view()),
     path(r'getNoteContent/', getNoteContent.as_view()),
     path(r'getNotesList/', getNotesList.as_view()),
-    path(r'addNote/',addNote.as_view()),
+    path(r'addNote',addNote.as_view()),
     path(r'deleteNote',deleteNote.as_view()),
     path(r'renameNote',renameNote.as_view()),
 ]

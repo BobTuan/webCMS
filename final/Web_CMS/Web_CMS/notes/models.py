@@ -17,7 +17,7 @@ from datetime import datetime
 class Note(models.Model):
     N_owner = models.ForeignKey(UserProfile, on_delete=models.CASCADE)  # 创建用户
     N_title = models.CharField(max_length=50, verbose_name='笔记标题', default='赶紧给这个笔记取个名字吧！')
-    N_parent_id = models.ForeignKey('self', on_delete=models.PROTECT, db_constraint=False,
+    N_parent_id = models.ForeignKey('self', on_delete=models.SET_NULL, db_constraint=False,
                                null=True, blank=True, verbose_name='父节点')
     # N_tags = models.ManyToManyField(Tag, blank=True, null=True, verbose_name='笔记标签')
     N_content = models.TextField(verbose_name='笔记内容')

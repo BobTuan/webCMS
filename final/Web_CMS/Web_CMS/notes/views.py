@@ -7,6 +7,7 @@ from django.http import HttpResponse,JsonResponse
 import json
 from datetime import date, datetime
 from django.db.models import Q
+from collections import Counter
 class ComplexEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, datetime):
@@ -143,11 +144,30 @@ class getAllTags(APIView):
 			print(tag.N_tags)
 			tags.extend(tag.N_tags.split(","))
 		print(tags)
+		cnt= Counter(tags)
+		keys=list(cnt.keys())
+		total=sum(list(cnt.values()))
 		_data = [
 			{
-				'id': x.id,
-				'tags': x.N_tags
-			} for x in mList
+				'id': key,
+				'groundid': cnt[key]/total,
+				'size':cnt[key]*1500/total
+			} for key in keys
 		]
 		result = {"status": "200", "data": {'data': _data}}
 		return HttpResponse(json.dumps(result, ensure_ascii=False, cls=ComplexEncoder),content_type="application/json,charset=utf-8")
+class getTagList(APIView):
+	def get(self,request):
+		user = request.GET.get('user')
+		tag = request.GET.get('tag')
+		mList = Note.objects.filter(Q(N_owner_id=user) & Q(N_tags__contains=tag))
+		_data = [
+			{
+				'id': x.id,
+				'title': x.N_title,
+				'createTime': x.N_create_time,
+			} for x in mList
+		]
+		result = {"status": "200", "data": {'data': _data}}
+		return HttpResponse(json.dumps(result, ensure_ascii=False, cls=ComplexEncoder),
+							content_type="application/json,charset=utf-8")

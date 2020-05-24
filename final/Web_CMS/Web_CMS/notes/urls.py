@@ -3,7 +3,7 @@ from django.urls import path
 from django.contrib import admin
 # 正在部署的应用的名称
 from notes.views import getTree,getNoteContent,getNotesList
-from notes.views import addNote,deleteNote,renameNote,editNote,getAllTags
+from notes.views import addNote,deleteNote,renameNote,editNote,getAllTags,getTagList
 app_name = 'notes'
 
 urlpatterns = [
@@ -16,4 +16,5 @@ urlpatterns = [
     path(r'renameNote',renameNote.as_view()),
     path(r'editNote', editNote.as_view()),
     path(r'getAllTags', getAllTags.as_view()),
+    path(r'getTagList', getTagList.as_view()),
 ]

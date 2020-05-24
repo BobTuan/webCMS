@@ -48,20 +48,39 @@ function bubbleChart() {
           //这里我使用了jquery,dom操作感觉比较方便
           // alert($(this)[0]);
           // alert(Object.keys($(this)))
-          alert($(this)['context']['__data__']['id'])
+          var tag = $(this)['context']['__data__']['id']
+          console.log(tag)
+          window.parent.cleanNote();
+          window.parent.initContent();
+          window.parent.closePageslide();
+          window.parent.getTagList(tag);
           // alert(Object.keys($(this)['context']['__data__']))
   
       }
     function onMouseMove() {
   
              // this would work, but not when its called in a function
+            //  console.log(typeof(this))
+            //  console.log(Object.keys(this))
+            //  console.log(this['__on'])
             d3.select(this)
             .attr('stroke', d => '#FF1493')
+            // .attr('fill','#FF1493')
+            // .attr('fill', 'red')
+            // console.log(d3.select(this).style("fill"))
+            // console.log(1)
+            // d3.select(this).style("fill", "red");
+            // console.log(2)
+            // console.log(d3.select(this).style("fill"))
+
   
     }
     function onMouseOut(){
       d3.select(this)
-            .attr('stroke', d => '#3CB371')
+            .attr('stroke', 'none')
+            // .attr('fill','#3CB371')
+            // .style('fill', '#3CB371')
+
     }
     // selector为容器，后面为原始数据
     let chart = function chart(selector, rawData) {
@@ -153,22 +172,22 @@ function bubbleChart() {
   }
   
   // new bubble chart instance
-  let   myBubbleChart = bubbleChart();
-  const datadata      = [
-    {id:'北京',groupid:'24.32%',size:900},
-    {id:'河北',groupid:'16.48%',size:610},
-    {id:'山东',groupid:'12.7%',size:470},
-    {id:'广东',groupid:'10.81%',size:400},
-    {id:'新疆',groupid:'10.81%',size:400},
-    {id:'人工智能',groupid:'8.1%',size:300},
-    {id:'云南',groupid:'8.1%',size:300},
-    {id:'云南',groupid:'8.1%',size:300},
-    {id:'湖南',groupid:'8.1%',size:300},
-    {id:'江苏智能',groupid:'1%',size:120},
-    {id:'浙江',groupid:'1%',size:120},
-    {id:'香港',groupid:'1%',size:130},
-  ]
-  myBubbleChart('#bubble-box', datadata);
+  let myBubbleChart = bubbleChart();
+//   const datadata      = [
+//     {id:'北京',groupid:'24.32%',size:900},
+//     {id:'河北',groupid:'16.48%',size:610},
+//     {id:'山东',groupid:'12.7%',size:470},
+//     {id:'广东',groupid:'10.81%',size:400},
+//     {id:'新疆',groupid:'10.81%',size:400},
+//     {id:'人工智能',groupid:'8.1%',size:300},
+//     {id:'云南',groupid:'8.1%',size:300},
+//     {id:'云南',groupid:'8.1%',size:300},
+//     {id:'湖南',groupid:'8.1%',size:300},
+//     {id:'江苏智能',groupid:'1%',size:120},
+//     {id:'浙江',groupid:'1%',size:120},
+//     {id:'香港',groupid:'1%',size:130},
+//   ]
+  
 
 
 var user = getParams("user");
@@ -191,6 +210,9 @@ if(user){
         dataType: "JSON",
         success : function(data){
             console.log(data)
+            datadata = data['data']['data']
+            console.log(datadata)
+            myBubbleChart('#bubble-box', datadata);
         },
         error:function(data){
             console.log(JSON.stringify(data));

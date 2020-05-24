@@ -93,6 +93,7 @@ function zTreeOnClick(e, treeId, treeNode) {
         ids = getChildren(ids, treeNode);  //TreeNode是选中节点，ids是子节点id数组，格式：123,223,4,55
     // console.log(ids)
     window.parent.cleanNote();
+    window.parent.initContent();
     window.parent.closePageslide();
     window.parent.getNoteList(ids);
     var title = $("#editTitle",parent.document)

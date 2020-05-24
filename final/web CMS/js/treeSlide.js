@@ -33,9 +33,8 @@ function getParams(key) {
     }
     return null;
 };
-
-$(document).ready(function(){
-    console.log("user:"+user);
+if(user){
+    console.log("树状结构");
     $.ajax({
         url : "http://127.0.0.1:8000/notes/getTree",
         data: {
@@ -54,7 +53,28 @@ $(document).ready(function(){
             console.log(JSON.stringify(data));
         }
     })
-});
+}
+// $(document).ready(function(){
+//     console.log("user:"+user);
+//     $.ajax({
+//         url : "http://127.0.0.1:8000/notes/getTree",
+//         data: {
+//             "user": user,
+//             },
+//         async   : true,            // 是否异步
+//         dataType: "JSON",
+//         success : function(data){
+//             console.log(data['data'])
+//             var zNodes = data['data']['data'];
+//             $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+//             zTree = $.fn.zTree.getZTreeObj("treeDemo");
+//             rMenu = $("#rMenu");
+//         },
+//         error:function(data){
+//             console.log(JSON.stringify(data));
+//         }
+//     })
+// });
 var newCount = 1;
 function OnRightClick(event, treeId, treeNode) {
     // alert(1);
@@ -173,6 +193,9 @@ function addTreeNode() {
         dataType: "json",           // 设置数据类型
         success : function (data){
             console.log('success');
+            // var ids = [];
+            //     ids = getChildren(ids, nodes['0']);
+            // window.parent.getNoteList(ids);
         },
         error: function (errorMsg){
             // 请求失败
@@ -189,29 +212,27 @@ function removeTreeNode() {
     // console.log(nodes)
     // console.log(ids)
     if (nodes && nodes.length > 0) {
-        if (nodes[0].children && nodes[0].children.length > 0) {
-            if (confirm("该操作会将关联数据同步删除，是否确认删除？") == true){
-                $.ajax({
-                    type: "Post",
-                    url : "http://127.0.0.1:8000/notes/deleteNote",
-                    data: {
-                        "userID": user,
-                        "noteID": ids
-                    },
-                    traditional: true,
-                    async      : true,              // 是否异步
-                    dataType   : "JSON",
-                    success    : function (data) {
-                        console.log(data)
-                        if (data['status'] == "200") {
-                            zTree.removeNode(nodes[0]);
-                        }
-                        else {
-                            alert("删除失败。");
-                        }
+        if (confirm("该操作会将关联数据同步删除，是否确认删除？") == true){
+            $.ajax({
+                type: "Post",
+                url : "http://127.0.0.1:8000/notes/deleteNote",
+                data: {
+                    "userID": user,
+                    "noteID": ids
+                },
+                traditional: true,
+                async      : true,              // 是否异步
+                dataType   : "JSON",
+                success    : function (data) {
+                    console.log(data)
+                    if (data['status'] == "200") {
+                        zTree.removeNode(nodes[0]);
                     }
-                });
-            }
+                    else {
+                        alert("删除失败。");
+                    }
+                }
+            });
         }
     }
 }

@@ -5,6 +5,9 @@ $jjq("#rssSlide").pageslide({ direction: "right", modal: true });
 $jjq("#manageContainer").click(function(e){
     if (e.target.id!="treeSlide" || e.target.id!="tagSlide"){
             $jjq.pageslide.close();
+        //             var ids = [];
+        //                 ids = getChildren(ids, nodes['0']);
+        // getNoteList(ids);
     };
 })
 $jjq("#rssContainer").click(function(e){

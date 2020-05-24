@@ -4,22 +4,19 @@ from articles.models import Article
 from datetime import datetime
 # Create your models here.
 
+from taggit.managers import TaggableManager
 
 
 
-#
-# class Tag(models.Model):
-#     name = models.CharField(max_length=32, verbose_name='标签')
-#
-#     def __str__(self):
-#         return self.name
 
 class Note(models.Model):
     N_owner = models.ForeignKey(UserProfile, on_delete=models.CASCADE)  # 创建用户
     N_title = models.CharField(max_length=50, verbose_name='笔记标题', default='赶紧给这个笔记取个名字吧！')
-    N_parent_id = models.ForeignKey('self', on_delete=models.SET_NULL, db_constraint=False,
-                               null=True, blank=True, verbose_name='父节点')
-    # N_tags = models.ManyToManyField(Tag, blank=True, null=True, verbose_name='笔记标签')
+    # N_parent_id = models.ForeignKey('self', on_delete=models.SET_NULL, db_constraint=False,
+    #                            null=True, blank=True, verbose_name='父节点')
+    N_parent_id = models.CharField(max_length=50,
+                                    null=True, blank=True, verbose_name='父节点')
+    N_tags = models.CharField(max_length=500, blank=True, null=True, verbose_name='笔记标签')
     N_content = models.TextField(verbose_name='笔记内容')
     N_brief = models.CharField(max_length=100, verbose_name='笔记摘要', blank=True, null=True)
     N_idea = models.CharField(max_length=200, verbose_name='笔记想法', blank=True, null=True)
@@ -33,9 +30,7 @@ class Note(models.Model):
     class Meta:
         verbose_name = '笔记信息'
         verbose_name_plural = verbose_name
-
     def __str__(self):
         return self.N_title
-
 
 

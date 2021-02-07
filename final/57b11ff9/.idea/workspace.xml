@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f9705f69-822a-4ae2-9941-f91197088361" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../Web_CMS/Web_CMS/notes/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web_CMS/Web_CMS/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Web_CMS/Web_CMS/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web_CMS/Web_CMS/Web_CMS/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Web_CMS/Web_CMS/Web_CMS/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web_CMS/Web_CMS/articles/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web_CMS/Web_CMS/articles/migrations/0002_auto_20200519_1500.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web_CMS/Web_CMS/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web_CMS/Web_CMS/notes/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web_CMS/Web_CMS/notes/migrations/0002_auto_20200519_1500.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web_CMS/Web_CMS/notes/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Web_CMS/Web_CMS/notes/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web_CMS/Web_CMS/notes/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Web_CMS/Web_CMS/notes/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web_CMS/Web_CMS/users/Serializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Web_CMS/Web_CMS/users/Serializer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web_CMS/Web_CMS/users/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web_CMS/Web_CMS/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Web_CMS/Web_CMS/users/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jq22jqueryd3bubble6811201907312122_2/jqueryd3bubble/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../jq22jqueryd3bubble6811201907312122_2/jqueryd3bubble/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jq22jqueryd3bubble6811201907312122_2/jqueryd3bubble/jquery插件库.url" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jq22jqueryd3bubble6811201907312122_2/jqueryd3bubble/js/jquery-3.2.1.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jq22jqueryd3bubble6811201907312122_2/jqueryd3bubble/www.jq22.com.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web CMS/css/manage.css" beforeDir="false" afterPath="$PROJECT_DIR$/../web CMS/css/manage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web CMS/m-tagSlide.html" beforeDir="false" afterPath="$PROJECT_DIR$/../web CMS/m-tagSlide.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web CMS/manage.html" beforeDir="false" afterPath="$PROJECT_DIR$/../web CMS/manage.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1c7b98wkQ01MjhbH4aTXi2M5M4U" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f9705f69-822a-4ae2-9941-f91197088361" name="Default Changelist" comment="" />
+      <created>1589882424093</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1589882424093</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="264" y="56" key="SettingsEditor" timestamp="1589882488086">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="264" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1589882488086" />
+  </component>
+</project>

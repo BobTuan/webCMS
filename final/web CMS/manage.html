@@ -22,14 +22,31 @@
     <script src="js/bootstrap3-3-4.js"></script>
     <script src="dist/summernote.js"></script>
     <script src="dist/lang/summernote-zh-CN.js"></script>
-    <script type="text/javascript" src="js/tagsinput.js"></script>
+    <script src="js/jqueryMin1-10-2.js"></script>
+    <script type="text/javascript">
+        var $jjjq = $; //jquery.min.js的$重命名为j$
+        jQuery.noConflict();
+    </script>
+    <script type="text/javascript" src="js/bootstrap-tagsinput.js"></script>
     <link rel="stylesheet" type="text/css" href="pageslide/jquery.pageslide.css" />
     <link rel="stylesheet" type="text/css" href="css/tag.css" />
+    <script src="js/manage.js"></script>
+
     <style>
         .list-group-item {
             font-size: 13px;
         }
+        .list-group{
+            width: 100%;
+            height: 89%;
+            /* border: solid 2px black; */
+            overflow-y: auto;
+        }
+        .bootstrap-tagsinput{
+            border: none;
+        }
     </style>
+
 </head>
 
 <body>
@@ -39,25 +56,17 @@
         <div id="tree">
             <div id="treeTitle">
                 <input type="text" id="search" placeholder="搜索" />
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start ">
-                            <h5 class="mb-1">List group </h5>
-                            <small>3 days ago</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start ">
-                        <h5 class="mb-1">List group </h5>
-                        <small>3 days ago</small>
-                </a>
-                </div>
+            </div>
+            <div id="noteList" class="list-group">
             </div>
         </div>
         <div id="dockContainer">
             <ul id="jqDock">
                 <li><a class="dockItem" href="data.html"><img src="images/data/main.png" alt="Home"
                             title="main&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" /></a></li>
-                <li><a class="dockItem" href="m-treeSlide.html" id="treeSlide"><img src="images/rss/notebook.png"
+                <li><a class="dockItem"  id="treeSlide"><img src="images/data/tree.png"
                             alt="Contact" title="add&nbsp;&nbsp;&nbsp;&nbsp;" /></a></li>
-                <li><a class="dockItem" id="tagSlide" href="m-tagSlide.html"><img src="images/rss/tags.png" alt="portfolio"
+                <li><a class="dockItem" id="tagSlide" ><img src="images/rss/tags.png" alt="portfolio"
                             title="question&nbsp;&nbsp;&nbsp;&nbsp;" /></a></li>
                 <li><a class="dockItem" href="#"><img src="images/rss/more.png" alt="music"
                             title="more&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" /></a></li>
@@ -72,10 +81,11 @@
                      <!-- <div id="editHeader"> -->
                     <div id="editTitle">
                         <input>&nbsp</input>
+                        <button id="save" class="bt bt1">保存</button>
                     </div>
                     <div id="editTags">
-                        <div class="tagsinput-primary form-group">
-                            <input name="tagsinput" id="tagsinputval" class="tagsinput" data-role="tagsinput" value="faltui,这是一个标签" placeholder="输入后回车"/>
+                        <div class="tagsinput-primary form-group" >
+                            <input id="tags" class="tagsinput" value="" data-role="tagsinput"  placeholder="输入标签后回车"/>
                         </div>                    
                     </div>
     
@@ -95,56 +105,47 @@
 
 </html>
 <!-- 第三个jquery -->
+<script src="js/treeSlide.js"></script>
 <script src="pageslide/jquery-1.7.1.min.js"></script>
 <script type="text/javascript">
     var $jjq = $; //jquery.min.js的$重命名为j$
     jQuery.noConflict();
 </script>
-<script src="js/tree.js"></script>
+<!-- <script src="js/tree.js"></script> -->
 <script src="pageslide/jquery.pageslide.js"></script>
 <script src="pageslide/pageslide.js"></script>
 <script>
     $jq(function () {
         $jq('#keywordEdit').summernote({
-            height: 500,
+            height: 568,
             tabsize: 2,
             // airMode: true,
             lang: 'zh-CN',
             placeholder:"请输入关键字",
-            toolbar: [
-		                // ['color', ['color']],
-		                // ['font', ['bold', 'underline', 'clear']],
-		                // ['para', ['ul', ['ol']]],
-		                // ['fontsize', ['fontsize']]
-		              ]	
-            // popover: {
-            //     air: [
-            //     ['color', ['color']],
-            //     ['font', ['bold', 'underline', 'clear']],
-            //     ['para', ['ul','ol']],
-            // ]
-            // },
+            toolbar: []	
         });
         $('#keywordEdit').css('font-size','36px');
         $jq('#ideaEdit').summernote({
-            height: 200,
+            height: 112,
             tabsize: 2,
             lang: 'zh-CN',
             placeholder:"请输入想法",
-            toolbar: [
-		                // ['color', ['color']],
-		                // ['font', ['bold', 'underline', 'clear']],
-		                // ['para', ['ul', ['ol']]],
-		                // ['fontsize', ['fontsize']]
-		              ]	
+            toolbar: []	
         });
         $jq('#noteEdit').summernote({
-            height: 340,
+            height: 430,
             tabsize: 2,
             lang: 'zh-CN',
             placeholder:"请输入笔记",
         });
     });
+</script>
+<script>
+    var treeUrl="m-treeSlide.html"
+    var tagUrl="m-tagSlide.html"
+    var user=1
+    $('#treeSlide').attr('href',treeUrl+"?user="+user); 
+    $('#tagSlide').attr('href',tagUrl+"?user="+user); 
 </script>
 <style>
     .note-editor .note-editable {

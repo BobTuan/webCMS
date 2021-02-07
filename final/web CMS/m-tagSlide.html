@@ -1,21 +1,41 @@
-<!doctype html>
-<html lang="en">
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/tagCloud.js"></script>
-    <link rel="stylesheet" href="css/bootstrap-3-3-4.css" type="text/css">
-    <link rel="stylesheet" href="css/manage.css" type="text/css">
-    <link rel="stylesheet" href="css/tagCloud.css" type="text/css">
-<h2>标签</h2>
-<HR SIZE=10>
-    <div id="div1">
-        <a href="#" >知识决定一切</a>
-        <a href="#" >好好学习</a>
-        <a href="#" >寻龙诀</a>
-        <a href="#" >JavaScript</a>
-        <a href="#" >LEO</a>
-        <a href="#" >加油</a>
-        <a href="#" >web前端</a>
-        <a href="#" >web前端工程师</a>
-        <a href="#" >css3</a>
-    </div>
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://www.jq22.com/jquery/d3.js"></script>
+  <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+  <style>
+    #bubble-box{
+      width: 280px;
+      height: 580px;
+      position: relative;
+      border: 1px solid black;
+      margin-left: 10px;
+      margin-top: 3px;
+    }
+    circle{
+      position: relative;
+    }
+    @keyframes idle {
+      from, to {
+        transform: translate(0, 3%);
+      }
+      25% {
+        transform: translate(-3%, 0);
+      }
+      50% {
+        transform: translate(0, -3%);
+      }
+      75% {
+        transform: translate(3%, 0);
+      }
+    }
+    
+  </style>
+</head>
 
+<body>
+  <h2>标签</h2>
+  <HR SIZE=2>
+<div id = "bubble-box"></div>
+<script src="js/tagslide.js"></script>
+</body>
